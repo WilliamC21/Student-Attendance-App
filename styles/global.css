@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  background-color: #3f3f3f;
+  background-color: #264653;
 }
 
 .app {
@@ -16,8 +16,9 @@ body {
   max-width: 43rem;
   padding: 1rem;
   border-radius: 12px;
-  background-color: white;
+  background-color: #f4a261;
   margin: 3rem auto;
+  margin-top: 7rem;
 }
 
 .form-control {
