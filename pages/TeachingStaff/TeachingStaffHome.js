@@ -1,35 +1,47 @@
 import React from "react";
 import Link from "next/dist/client/link";
+import Header from "../../components/layout/Header";
+import Styles from "./TeachingHome.module.css";
+//import Button from "../../components/UI/Button";
+import { VStack, HStack, Button } from "@chakra-ui/react";
 
-export default function StudentHome() {
+export default function TeachingStaffHome() {
   return (
     <React.Fragment>
-      <h1>Teaching Staff Home</h1>
+      <Header />
+      <div className={Styles.container}>
+        <h1 className={Styles.test}>Student Home</h1>
 
-      <Link href="/">
-        <a>Login</a>
-      </Link>
+        <VStack>
+          <HStack w="full">
+            <Link href="/">
+              <Button w="full">
+                <p>Login</p>
+              </Button>
+            </Link>
 
-      <br />
-      <Link href="./StartClass/StartClass">
-        <a>Start Class</a>
-      </Link>
-      <br />
+            <Link href="./ViewAttendance/ViewAttendance">
+              <Button w="full">
+                <p>View Attendance</p>
+              </Button>
+            </Link>
+          </HStack>
 
-      <Link href="./ViewClasses/ViewClasses">
-        <a>View Classes</a>
-      </Link>
-      <br />
+          <HStack w="full">
+            <Button w="full">
+              <Link href="./ViewAttendance/ViewAttendance">
+                <a>View Attendance</a>
+              </Link>
+            </Button>
 
-      <Link href="./ViewStudentGrades/ViewStudentGrades">
-        <a>View Student Grades</a>
-      </Link>
-      <br />
-
-      <Link href="./BookRoom/BookRoom">
-        <a>Book Room</a>
-      </Link>
-      <br />
+            <Button w="full">
+              <Link href="./ViewGrades/ViewGrades">
+                <a>View Grades</a>
+              </Link>
+            </Button>
+          </HStack>
+        </VStack>
+      </div>
     </React.Fragment>
   );
 }

@@ -1,5 +1,5 @@
 import useInput from "./hooks/use-input";
-
+import Styles from "./LoginForm.module.css";
 const isNotEmpty = (value) => value.trim() !== "";
 const validEmail = (value) => value.trim() !== 0 && value.includes("@");
 
@@ -41,17 +41,20 @@ const BasicForm = (props) => {
     passwordReset();
   };
 
-  const userameInputClasses = usernameHasError
-    ? "form-control invalid"
-    : "form-control";
-  const passwordInputClasses = passwordHasError
-    ? "form-control invalid"
-    : "form-control";
+  //implement with string literal I think
+
+  // const userameInputClasses = usernameHasError
+  //   ? `${Styles["form-control invalid"]}`
+  //   : `${Styles["form-control"]}]`;
+
+  // const passwordInputClasses = passwordHasError
+  //   ? "form-control invalid"
+  //   : "form-control";
 
   return (
     <form onSubmit={formSubmissionHandler}>
-      <div className="control-group">
-        <div className={userameInputClasses}>
+      <div className={Styles["control-group"]}>
+        <div className={Styles["form-control"]}>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -61,12 +64,14 @@ const BasicForm = (props) => {
             onBlur={usernameBlurHandler}
           />
           {usernameHasError && (
-            <p className="error-text">Username field can't be empty</p>
+            <p className={Styles["error-text"]}>
+              Username field can't be empty
+            </p>
           )}
         </div>
       </div>
-      <div className="control-group">
-        <div className={passwordInputClasses}>
+      <div className={Styles["control-group"]}>
+        <div className={Styles["form-control"]}>
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -76,11 +81,13 @@ const BasicForm = (props) => {
             onBlur={passwordBlurHandler}
           />
           {passwordHasError && (
-            <p className="error-text">Password field can't be empty</p>
+            <p className={Styles["error-text"]}>
+              Password field can't be empty
+            </p>
           )}
         </div>
       </div>
-      <div className="form-actions">
+      <div className={Styles["form-actions"]}>
         <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>

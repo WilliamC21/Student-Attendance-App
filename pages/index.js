@@ -1,27 +1,28 @@
 import LoginForm from "../components/LoginForm";
 import Header from "../components/layout/Header";
 import Link from "next/link";
+import React from "react";
+import Card from "../components/UI/Card";
+import Styles from "./index.module.css";
+import { Container } from "@chakra-ui/layout";
 
 // import "./index.css";
 
 const Index = () => {
   return (
-    <div className="app">
-      <Header />
-      <LoginForm />
+    <React.Fragment>
+      <head>
+        <title>Login</title>
+      </head>
 
-      <Link href="./Student/StudentHome">
-        <a>Student Home</a>
-      </Link>
-      <br />
-      <Link href="./TeachingStaff/TeachingStaffHome">
-        <a>Teaching Staff Home</a>
-      </Link>
-      <br />
-      <Link href="./Admin/AdminHome">
-        <a>Admin Home</a>
-      </Link>
-    </div>
+      <body>
+        <div className={Styles.loginContainer}>
+          <Card>
+            <LoginForm />
+          </Card>
+        </div>
+      </body>
+    </React.Fragment>
   );
 };
 

@@ -1,33 +1,47 @@
 import React from "react";
 import Link from "next/dist/client/link";
-import Card from "../../components/UI/Card";
+import Header from "../../components/layout/Header";
+import Styles from "./AdminHome.module.css";
+//import Button from "../../components/UI/Button";
+import { VStack, HStack, Button } from "@chakra-ui/react";
 
 export default function AdminHome() {
   return (
     <React.Fragment>
-      <Card>
-        <h1>Admin Home</h1>
+      <Header />
+      <div className={Styles.container}>
+        <h1 className={Styles.test}>Student Home</h1>
 
-        <Link href="/">
-          <a>Login</a>
-        </Link>
-        <br />
+        <VStack>
+          <HStack w="full">
+            <Link href="/">
+              <Button w="full">
+                <p>Login</p>
+              </Button>
+            </Link>
 
-        <Link href="./EditUsers/EditUsers">
-          <a>Edit Users</a>
-        </Link>
-        <br />
+            <Link href="./ViewAttendance/ViewAttendance">
+              <Button w="full">
+                <p>View Attendance</p>
+              </Button>
+            </Link>
+          </HStack>
 
-        <Link href="./EditRooms/EditRooms">
-          <a>Edit Rooms</a>
-        </Link>
-        <br />
+          <HStack w="full">
+            <Button w="full">
+              <Link href="./ViewAttendance/ViewAttendance">
+                <a>View Attendance</a>
+              </Link>
+            </Button>
 
-        <Link href="./EditClasses/EditClasses">
-          <a>Edit Classes</a>
-        </Link>
-        <br />
-      </Card>
+            <Button w="full">
+              <Link href="./ViewGrades/ViewGrades">
+                <a>View Grades</a>
+              </Link>
+            </Button>
+          </HStack>
+        </VStack>
+      </div>
     </React.Fragment>
   );
 }
