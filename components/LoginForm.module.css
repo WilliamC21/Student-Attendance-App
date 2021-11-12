@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap");
 
 .form-control {
-  margin-bottom: 0;
+  margin: auto;
   justify-content: center;
   text-align: center;
 }
@@ -10,22 +10,23 @@
   display: block;
   font-family: "Montserrat", Courier, monospace;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  padding-top: 10px;
 }
 
 .form-control label {
-  font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .form-control input {
-  margin-bottom: 10px;
   width: 50%;
+  margin: auto;
   border-radius: 5px;
   font-size: 1.5rem;
   border-color: transparent;
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
   background-color: #f1faee;
+  padding: 0;
 }
 
 .form-control input:focus {
@@ -46,18 +47,22 @@
 }
 
 .form-actions {
-  padding: 1rem;
   align-self: center;
 }
 
 .form-actions button {
+  padding: 5px 0px 5px 0px;
+  width: 50%;
+  font-family: "Montserrat";
+  display: block;
   background-color: #f1faee;
-  color: f1faee;
+  color: #1d3557;
   display: block;
   margin: auto;
   border-radius: 5px;
   font-size: 1.5rem;
   border-color: transparent;
+  margin-top: 1.5rem;
 }
 
 .form-actions button:hover,
