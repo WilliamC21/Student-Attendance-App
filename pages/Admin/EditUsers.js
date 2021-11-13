@@ -1,16 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import NewUserForm from "./NewUserForm.js";
 import { VStack, HStack, Text } from "@chakra-ui/react";
 
 const EditUsers = () => {
   return (
     <React.Fragment>
       <h2>Edit Users</h2>
-
-      <VStack bg="gray.50" spacing={4}>
-        <NewUserForm />
-      </VStack>
 
       <VStack bg="gray.50" spacing={4}>
         <HStack>

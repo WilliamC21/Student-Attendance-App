@@ -1,12 +1,11 @@
-.main-container {
-  background-color: red;
-  width: 100%;
-  margin: 8rem 1rem 1rem 1rem;
-  padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap");
 
+.main-container {
+  margin: 0 5% 1rem 5%;
   display: flex;
-  flex-direction: flex-start;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .button-container {
@@ -14,4 +13,54 @@
   width: 50%;
   margin: auto;
   padding: 10px;
+  font-family: "Montserrat";
+}
+
+.main-container {
+  align-self: center;
+}
+
+.main-container button {
+  padding: 5px 0px 5px 0px;
+  width: 50%;
+  font-family: "Montserrat";
+  display: block;
+  background-color: #f1faee;
+  color: #1d3557;
+  display: block;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  border-color: transparent;
+  margin-top: 1.5rem;
+}
+
+.main-container button:hover,
+.main-container button:active {
+  background-color: #a8dadc;
+  border-color: #1d3557;
+}
+
+.glance-text {
+  font-family: "Montserrat";
+  font-size: larger;
+}
+
+.glance-container {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.glance-left {
+  width: 50%;
+  flex-wrap: wrap;
+}
+.circle {
+  background-color: rgb(84, 145, 84);
+  margin: auto;
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
 }

@@ -2,46 +2,50 @@ import React from "react";
 import Link from "next/dist/client/link";
 import Header from "../../components/layout/Header";
 import Styles from "./StudentHome.module.css";
+import HalfCard from "../../components/UI/HalfCard";
 //import Button from "../../components/UI/Button";
 import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
 
 export default function StudentHome() {
   return (
     <React.Fragment>
-      <div className={Styles["main-container"]}>
-        <div className={Styles["button-container"]}>
-          <VStack>
-            <HStack w="full">
-              <Link href="/">
-                <Button w="full">
-                  <p>Login</p>
-                </Button>
-              </Link>
+      <head>
+        <title>Student Home</title>
+      </head>
 
-              <Link href="./LogAttendance">
-                <Button w="full">
-                  <p>Log Attendace</p>
-                </Button>
-              </Link>
-            </HStack>
+      <body>
+        <div className={Styles["main-container"]}>
+          <HalfCard>
+            <Link href="./LogAttendance">
+              <button>Log Attendance</button>
+            </Link>
+            <Link href="./ViewAttendance">
+              <button>View Attendance</button>
+            </Link>
+            <Link href="./ViewClasses">
+              <button>View Classes</button>
+            </Link>
+            <Link href="./ViewGrades">
+              <button>View Grades</button>
+            </Link>
+          </HalfCard>
 
-            <HStack w="full">
-              <Button w="full">
-                <Link href="./ViewAttendance/ViewAttendance">
-                  <a>View Classes</a>
-                </Link>
-              </Button>
-
-              <Button w="full">
-                <Link href="./ViewGrades/ViewGrades">
-                  <a>View Grades</a>
-                </Link>
-              </Button>
-            </HStack>
-          </VStack>
+          <HalfCard>
+            <div className={Styles["glance-container"]}>
+              <div className={Styles["glance-left"]}>
+                <h1>At a Glance</h1>
+                <br />
+                <p className={Styles["glance-text"]}>Your Next Class</p>
+                <br />
+                <p className={Styles["glance-text"]}>Your Most Recent Grade</p>
+              </div>
+              <div className={Styles["glance-left"]}>
+                <div className={Styles["circle"]} />
+              </div>
+            </div>
+          </HalfCard>
         </div>
-        <div classNames={Styles.container}></div>
-      </div>
+      </body>
     </React.Fragment>
   );
 }

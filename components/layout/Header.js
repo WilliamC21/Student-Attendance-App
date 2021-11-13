@@ -9,9 +9,7 @@ const Header = (props) => {
     <React.Fragment>
       <header className={classes.header}>
         <h1>EasyCheck</h1>
-        <Link href="/">
-          <Button>Logout</Button>
-        </Link>
+        <h2>blah</h2>
       </header>
     </React.Fragment>
   );

@@ -2,46 +2,37 @@ import React from "react";
 import Link from "next/dist/client/link";
 import Header from "../../components/layout/Header";
 import Styles from "./TeachingHome.module.css";
+import HalfCard from "../../components/UI/HalfCard";
 //import Button from "../../components/UI/Button";
-import { VStack, HStack, Button } from "@chakra-ui/react";
+import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
 
 export default function TeachingStaffHome() {
   return (
     <React.Fragment>
-      <Header />
-      <div className={Styles.container}>
-        <h1 className={Styles.test}>Student Home</h1>
+      <head>
+        <title>Teaching Staff Home</title>
+      </head>
 
-        <VStack>
-          <HStack w="full">
-            <Link href="/">
-              <Button w="full">
-                <p>Login</p>
-              </Button>
+      <body>
+        <div className={Styles["main-container"]}>
+          <HalfCard>
+            <Link href="./StartClass">
+              <button>Start a Class</button>
             </Link>
-
-            <Link href="./ViewAttendance/ViewAttendance">
-              <Button w="full">
-                <p>View Attendance</p>
-              </Button>
+            <Link href="./ViewClasses">
+              <button>View Classes</button>
             </Link>
-          </HStack>
-
-          <HStack w="full">
-            <Button w="full">
-              <Link href="./ViewAttendance/ViewAttendance">
-                <a>View Attendance</a>
-              </Link>
-            </Button>
-
-            <Button w="full">
-              <Link href="./ViewGrades/ViewGrades">
-                <a>View Grades</a>
-              </Link>
-            </Button>
-          </HStack>
-        </VStack>
-      </div>
+            <Link href="./ViewStudentAttendance">
+              <button>View Student Attendance</button>
+            </Link>
+            <Link href="./ViewStudentGrades">
+              <button>View Student Grades</button>
+            </Link>
+          </HalfCard>
+          <div className={Styles["spacer"]} />
+          <HalfCard />
+        </div>
+      </body>
     </React.Fragment>
   );
 }
