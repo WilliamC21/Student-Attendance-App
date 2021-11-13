@@ -17,7 +17,7 @@ const Index = () => {
       </head>
 
       <body>
-        <div className={Styles.loginContainer}>
+        <div className="main-container">
           <Card>
             <LoginForm />
           </Card>
@@ -25,9 +25,9 @@ const Index = () => {
       </body>
       <div className={Styles.loginContainer}>
         <Link href="./Student/StudentHome">
-          <Button w="full">
+          <button>
             <p>Student Home</p>
-          </Button>
+          </button>
         </Link>
 
         <Link href="./TeachingStaff/TeachingStaffHome">

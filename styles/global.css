@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@500&display=swap");
 
 body {
-  background: black;
+  background: #f1faee;
+  font-family: "Montserrat";
 }
 
 button {
@@ -15,6 +16,31 @@ button {
 }
 
 .marginT {
-  margin-top: 50px;
-  background-color: #126e5f;
+  height: 100px;
+}
+
+.main-container {
+  margin: 0 15% 0 15%;
+  justify-self: center;
+  justify-content: center;
+}
+
+h1 {
+  font-family: "Montserrat";
+  text-align: center;
+}
+
+button:hover,
+button:active {
+  background-color: #a8dadc;
+  border-color: #1d3557;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: rgb(100, 100, 100);
+  border-color: #ccc;
+  cursor: not-allowed;
 }

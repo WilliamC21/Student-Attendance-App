@@ -1,10 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import ListContainer from "../../components/UI/List/ListContainer";
 
 const ViewStudentAttendance = () => {
   return (
     <React.Fragment>
-      <h2>View Student Attendance</h2>
+      <div className="main-container">
+        <h1>Student Attendance</h1>
+        <ListContainer />
+      </div>
     </React.Fragment>
   );
 };
