@@ -4,8 +4,11 @@ import Card from "../Card";
 const ListContainer = (props) => {
   return (
     <Card>
-      <ListItem />
-      <ListItem />
+      <li>
+        {props.items.map((user) => (
+          <ListItem key={user.id} firstName={user.firstName} />
+        ))}
+      </li>
     </Card>
   );
 };

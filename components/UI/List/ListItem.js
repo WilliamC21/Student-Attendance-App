@@ -6,8 +6,8 @@ const ListItem = (props) => {
   return (
     <li className={Styles["list-item"]}>
       <div className="expense-item__description">
-        <h2>Bob</h2>
-        <div className="expense-item__price">45%</div>
+        <h2>{props.firstName}</h2>
+        <div className="expense-item__price">{props.attendance}%</div>
       </div>
     </li>
   );

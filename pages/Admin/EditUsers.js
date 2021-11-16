@@ -1,17 +1,42 @@
 import React from "react";
 import Link from "next/link";
 import { VStack, HStack, Text } from "@chakra-ui/react";
+import ListContainer from "../../components/UI/List/ListContainer";
+import { PrismaClient } from "@prisma/client";
+import { useState } from "react";
 
-const EditUsers = () => {
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+  const users = await prisma.user.findMany();
+
+  return {
+    props: {
+      initialUsers: users,
+    },
+  };
+}
+
+const EditUsers = (props) => {
+  const [users, setUsers] = useState(props.initialUsers);
+
   return (
     <React.Fragment>
-      <h2>Edit Users</h2>
+      <head>
+        <title>Edit Users</title>
+      </head>
 
-      <VStack bg="gray.50" spacing={4}>
-        <HStack>
-          <Text>Example</Text>
-        </HStack>
-      </VStack>
+      <div className={"main-container"}>
+        <h2>Edit Users</h2>
+
+        {props.initialUsers.map((user) => (
+          <div>
+            <p>{user.firstName}</p>
+            <p>{user.lastName}</p>
+          </div>
+        ))}
+        <ListContainer items={users} />
+      </div>
     </React.Fragment>
   );
 };
