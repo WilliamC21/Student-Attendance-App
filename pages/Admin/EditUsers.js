@@ -27,14 +27,7 @@ const EditUsers = (props) => {
       </head>
 
       <div className={"main-container"}>
-        <h2>Edit Users</h2>
-
-        {props.initialUsers.map((user) => (
-          <div>
-            <p>{user.firstName}</p>
-            <p>{user.lastName}</p>
-          </div>
-        ))}
+        <h1>Edit Users</h1>
         <ListContainer items={users} />
       </div>
     </React.Fragment>
