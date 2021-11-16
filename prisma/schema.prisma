@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:.dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  firstName String
+  lastName String
+  email String
+  isAdmin Boolean
+  isTeacher Boolean
+  totalClasses Int
+  classesAttended Int
+  attendance Int
+  course String
+  teaches Lecture[]
+  enrolledIn Course[]
+  obtained Grade []
+
+}
+
+model ClassRoom {
+  roomNum String @id 
+  building String
+  hasLectures Lecture[]
+
+}
+
+model Lecture {
+  id String @id
+  room String
+  dateTime String 
+  userID Int
+  courseID String
+  classRoom String
+  occursIn ClassRoom @relation(fields: [classRoom], references: [roomNum])
+  user User @relation(fields: [userID], references:[id])
+  forCourse Course @relation(fields: [courseID], references: [courseID])
+
+}
+
+model Course {
+  courseID String @id
+  teacher String
+  lectures Lecture[]
+  assessments Grade[]
+  users User[]
+}
+
+model Grade { 
+  gradeID String @id
+  gradePercent Int
+  studentID Int
+  student User @relation(fields: [studentID], references: [id])
+  returnDate String
+  courseID String
+  course Course @relation(fields: [courseID], references: [courseID])
+
+
+}

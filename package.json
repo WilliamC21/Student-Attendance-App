@@ -15,9 +15,14 @@
     "@chakra-ui/react": "^1.6.12",
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
+    "@prisma/client": "^3.4.2",
     "framer-motion": "^4.1.17",
     "next": "^12.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "prettier-plugin-prisma": "^3.4.1",
+    "prisma": "^3.4.2"
   }
 }
