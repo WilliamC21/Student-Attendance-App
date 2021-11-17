@@ -8,17 +8,17 @@ import { useState } from "react";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const users = await prisma.user.findMany();
+  const students = await prisma.student.findMany();
 
   return {
     props: {
-      initialUsers: users,
+      initialStudents: students,
     },
   };
 }
 
 const EditUsers = (props) => {
-  const [users, setUsers] = useState(props.initialUsers);
+  const [students, setStudents] = useState(props.initialStudents);
 
   return (
     <React.Fragment>
@@ -26,9 +26,10 @@ const EditUsers = (props) => {
         <title>Edit Users</title>
       </head>
 
+      <h2>{students.lastName}</h2>
       <div className={"main-container"}>
         <h1>Edit Users</h1>
-        <ListContainer items={users} />
+        <ListContainer items={[students.firstName, "green", "red"]} />
       </div>
     </React.Fragment>
   );
