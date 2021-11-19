@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { VStack, HStack, Text } from "@chakra-ui/react";
-import ListContainer from "../../components/UI/List/ListContainer";
+import ListContainer from "../../components/UI/Lists/StudentLists/StudentListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 
@@ -19,17 +19,20 @@ export async function getServerSideProps() {
 
 const EditUsers = (props) => {
   const [students, setStudents] = useState(props.initialStudents);
-
+  console.log(students);
   return (
     <React.Fragment>
       <head>
         <title>Edit Users</title>
       </head>
 
-      <h2>{students.lastName}</h2>
       <div className={"main-container"}>
         <h1>Edit Users</h1>
-        <ListContainer items={[students.firstName, "green", "red"]} />
+
+        <ListContainer
+          labels={["First Name", "Surname", "Email", "Attendance"]}
+          items={students}
+        />
       </div>
     </React.Fragment>
   );

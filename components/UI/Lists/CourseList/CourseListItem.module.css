@@ -1,0 +1,14 @@
+.start-container {
+  width: 30%;
+  text-align: start;
+  overflow: hidden;
+}
+
+.mid-container {
+  width: 50%;
+}
+
+.end-container {
+  width: 20%;
+  text-align: end;
+}

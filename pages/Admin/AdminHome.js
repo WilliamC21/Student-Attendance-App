@@ -20,10 +20,10 @@ export default function AdminHome() {
           <Link href="./EditUsers">
             <button>Edit Users</button>
           </Link>
-          <Link href="./EditClasses">
+          <Link href="./EditCourses">
             <button>Edit Classes</button>
           </Link>
-          <Link href="./EditRooms">
+          <Link href="./EditClassrooms">
             <button>Edit Rooms</button>
           </Link>
         </Card>

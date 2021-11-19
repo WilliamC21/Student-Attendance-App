@@ -1,0 +1,14 @@
+.item-container {
+  width: 25%;
+  text-align: start;
+  overflow: hidden;
+}
+
+.email-container {
+  width: 40%;
+}
+
+.end-container {
+  width: 10%;
+  text-align: end;
+}
