@@ -16,21 +16,5 @@ body {
 }
 
 h1 {
-  font-family: "Montserrat";
   text-align: center;
-}
-
-button:hover,
-button:active {
-  background-color: #a8dadc;
-  border-color: #1d3557;
-}
-
-button:disabled,
-button:disabled:hover,
-button:disabled:active {
-  background-color: #ccc;
-  color: rgb(100, 100, 100);
-  border-color: #ccc;
-  cursor: not-allowed;
 }

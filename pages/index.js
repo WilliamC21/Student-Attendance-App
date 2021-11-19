@@ -22,26 +22,27 @@ const Index = () => {
             <LoginForm />
           </Card>
         </div>
+
+        <div className={Styles.loginContainer}>
+          <Link href="./Student/StudentHome">
+            <button>
+              <p>Student Home</p>
+            </button>
+          </Link>
+
+          <Link href="./TeachingStaff/TeachingStaffHome">
+            <Button w="full">
+              <p>Teaching Home</p>
+            </Button>
+          </Link>
+
+          <Link href="./Admin/AdminHome">
+            <Button w="full">
+              <p>Admin Home</p>
+            </Button>
+          </Link>
+        </div>
       </body>
-      <div className={Styles.loginContainer}>
-        <Link href="./Student/StudentHome">
-          <button>
-            <p>Student Home</p>
-          </button>
-        </Link>
-
-        <Link href="./TeachingStaff/TeachingStaffHome">
-          <Button w="full">
-            <p>Teaching Home</p>
-          </Button>
-        </Link>
-
-        <Link href="./Admin/AdminHome">
-          <Button w="full">
-            <p>Admin Home</p>
-          </Button>
-        </Link>
-      </div>
     </React.Fragment>
   );
 };
