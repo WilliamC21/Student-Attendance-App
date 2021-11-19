@@ -22,7 +22,7 @@ export default function StudentHome() {
             <Link href="./ViewAttendance">
               <button>View Attendance</button>
             </Link>
-            <Link href="./ViewClasses">
+            <Link href="./ViewCourses">
               <button>View Classes</button>
             </Link>
             <Link href="./ViewGrades">

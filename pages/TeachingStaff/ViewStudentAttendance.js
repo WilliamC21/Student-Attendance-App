@@ -1,37 +1,36 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import ListContainer from "../../components/UI/List/ListContainer";
-
+import React from "react";
+import CourseListContainer from "../../components/UI/Lists/CourseList/CourseListContainer";
 import { PrismaClient } from "@prisma/client";
+import { useState } from "react";
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const users = await prisma.user.findMany();
+  const courses = await prisma.course.findMany();
 
   return {
     props: {
-      initialUsers: users,
+      initialCourses: courses,
     },
   };
 }
 
-const ViewStudentAttendance = ({ initialUsers }) => {
-  const [users, setUsers] = useState(initialUsers);
-
+const ViewStudentAttendance = (props) => {
+  const [courses, setCourses] = useState(props.initialCourses);
+  console.log(courses);
   return (
     <React.Fragment>
-      {initialUsers.map((user) => (
-        <div>
-          <p>{user.firstName}</p>
-          <p>{user.lastName}</p>
-        </div>
-      ))}
+      <head>
+        <title>View Grades</title>
+      </head>
 
-      <div className="main-container">
-        <h1>Student Attendance</h1>
+      <div className={"main-container"}>
+        <h1>Your Grades</h1>
 
-        <ListContainer />
+        <CourseListContainer
+          labels={["Course Code", "Title", "Teacher"]}
+          items={courses}
+        />
       </div>
     </React.Fragment>
   );

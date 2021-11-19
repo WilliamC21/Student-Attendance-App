@@ -9,20 +9,9 @@ const LogAttendance = () => {
 
       <div className="main-container">
         <Card>
-          <select>
-            <option value="0"></option>
-            <option value="0"></option>
-            <option value="0"></option>
-            <option value="0"></option>
-          </select>
-        </Card>
-
-        <Card>
-          <button>Start Class</button>
-        </Card>
-
-        <Card>
-          <h1>Generated Code Here</h1>
+          <label>Select lecture to attend</label>
+          <select />
+          <button>Attend this lecture</button>
         </Card>
       </div>
     </React.Fragment>
