@@ -4,6 +4,7 @@ import { VStack, HStack, Text } from "@chakra-ui/react";
 import ListContainer from "../../components/UI/Lists/StudentLists/StudentListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import NewStudentForm from "../../components/Forms/NewStudentForm";
 
 const prisma = new PrismaClient();
 
@@ -19,7 +20,7 @@ export async function getServerSideProps() {
 
 const EditUsers = (props) => {
   const [students, setStudents] = useState(props.initialStudents);
-  console.log(students);
+
   return (
     <React.Fragment>
       <head>
@@ -28,7 +29,7 @@ const EditUsers = (props) => {
 
       <div className={"main-container"}>
         <h1>Edit Users</h1>
-
+        <NewStudentForm />
         <ListContainer
           labels={["First Name", "Surname", "Email", "Attendance"]}
           items={students}
