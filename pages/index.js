@@ -1,11 +1,10 @@
-import LoginForm from "../components/LoginForm";
-import Header from "../components/layout/Header";
+import LoginForm from "../components/Forms/LoginForm";
 import Link from "next/link";
 import React from "react";
 import Card from "../components/UI/Card";
 import Styles from "./index.module.css";
-import { Container } from "@chakra-ui/layout";
-import { Button } from "@chakra-ui/react";
+
+import { Flex } from "@chakra-ui/react";
 
 // import "./index.css";
 
@@ -23,24 +22,28 @@ const Index = () => {
           </Card>
         </div>
 
-        <div className={Styles.loginContainer}>
-          <Link href="./Student/StudentHome">
-            <button>
-              <p>Student Home</p>
-            </button>
-          </Link>
+        <div className="main-container">
+          <Card>
+            <Flex>
+              <Link href="./Student/StudentHome">
+                <button>
+                  <p>Student Home</p>
+                </button>
+              </Link>
 
-          <Link href="./TeachingStaff/TeachingStaffHome">
-            <Button w="full">
-              <p>Teaching Home</p>
-            </Button>
-          </Link>
+              <Link href="./TeachingStaff/TeachingStaffHome">
+                <button>
+                  <p>Teaching Home</p>
+                </button>
+              </Link>
 
-          <Link href="./Admin/AdminHome">
-            <Button w="full">
-              <p>Admin Home</p>
-            </Button>
-          </Link>
+              <Link href="./Admin/AdminHome">
+                <button>
+                  <p>Admin Home</p>
+                </button>
+              </Link>
+            </Flex>
+          </Card>
         </div>
       </body>
     </React.Fragment>

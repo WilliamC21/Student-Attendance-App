@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
 
 .loginContainer {
-  margin: 0 15% 0 15%;
-
+  margin: auto;
+  display: flex;
+  flex-direction: row;
   justify-self: center;
   justify-content: center;
 }

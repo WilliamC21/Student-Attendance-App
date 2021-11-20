@@ -1,5 +1,5 @@
 import React from "react";
-import useInput from "./hooks/use-input";
+import useInput from "../hooks/use-input";
 import Styles from "./LoginForm.module.css";
 const isNotEmpty = (value) => value.trim() !== "";
 const validEmail = (value) => value.trim() !== 0 && value.includes("@");

@@ -4,6 +4,7 @@ import { VStack, HStack, Text } from "@chakra-ui/react";
 import ClassroomListContainer from "../../components/UI/Lists/ClassroomList/ClassroomListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import NewClassForm from "../../components/Forms/NewClassroomForm";
 
 const prisma = new PrismaClient();
 
@@ -28,6 +29,7 @@ const EditClassrooms = (props) => {
 
       <div className={"main-container"}>
         <h1>Edit Classrooms</h1>
+        <NewClassForm />
         <ClassroomListContainer
           labels={("Room", "Building")}
           items={classRooms}

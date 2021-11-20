@@ -18,3 +18,61 @@ body {
 h1 {
   text-align: center;
 }
+
+button {
+  padding: 5px 0px 5px 0px;
+  font-family: "Montserrat";
+  display: block;
+  background-color: #f1faee;
+  color: #1d3557;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  border-color: transparent;
+}
+
+button:hover,
+button:active {
+  background-color: #a8dadc;
+  border-color: #1d3557;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  background-color: #ccc;
+  color: rgb(100, 100, 100);
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+select {
+  margin-top: 0;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  border-color: transparent;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  background-color: #f1faee;
+  padding: 0;
+}
+
+label {
+  display: block;
+  font-family: "Montserrat", Courier, monospace;
+  color: white;
+  font-size: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 0.3rem;
+}
+
+input {
+  margin-top: 0;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  border-color: transparent;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+  background-color: #f1faee;
+  padding: 0;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import CourseListContainer from "../../components/UI/Lists/CourseList/CourseListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import NewCourseForm from "../../components/Forms/NewCourseForm";
 
 const prisma = new PrismaClient();
 
@@ -26,6 +27,8 @@ const EditCourses = (props) => {
 
       <div className={"main-container"}>
         <h1>Edit Courses</h1>
+
+        <NewCourseForm />
 
         <CourseListContainer
           labels={["Course Code", "Title", "Teacher"]}
