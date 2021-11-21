@@ -5,8 +5,11 @@ import Styles from "./StudentHome.module.css";
 import HalfCard from "../../components/UI/HalfCard";
 //import Button from "../../components/UI/Button";
 import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function StudentHome() {
+  let percentage = 100;
   return (
     <React.Fragment>
       <head>
@@ -40,7 +43,10 @@ export default function StudentHome() {
                 <p className={Styles["glance-text"]}>Your Most Recent Grade</p>
               </div>
               <div className={Styles["glance-left"]}>
-                <div className={Styles["circle"]} />
+                <CircularProgressbar
+                  value={percentage}
+                  text={`${percentage}%`}
+                />
               </div>
             </div>
           </HalfCard>

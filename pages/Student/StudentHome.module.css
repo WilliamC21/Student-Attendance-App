@@ -55,8 +55,12 @@
 
 .glance-left {
   width: 50%;
+  height: 90%;
   flex-wrap: wrap;
+  align-items: flex-start;
+  text-align: start;
 }
+
 .circle {
   background-color: rgb(84, 145, 84);
   margin: auto;

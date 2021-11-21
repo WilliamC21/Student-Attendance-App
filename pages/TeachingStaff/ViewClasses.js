@@ -1,23 +1,32 @@
 import React from "react";
-import CourseListContainer from "../../components/UI/Lists/CourseList/CourseListContainer";
+import LectureListContainer from "../../components/UI/Lists/LectureList/LectureListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const courses = await prisma.course.findMany();
+  const teachersLecture = await prisma.staff.findUnique({
+    where: {
+      id: 1,
+    },
+
+    include: {
+      teachesLecture: {},
+    },
+  });
 
   return {
     props: {
-      initialCourses: courses,
+      teachersLecture: teachersLecture.teachesLecture,
     },
   };
 }
 
 const ViewCourses = (props) => {
-  const [courses, setCourses] = useState(props.initialCourses);
-  console.log(courses);
+  const [lectures, setLectures] = useState(props.teachersLecture);
+
+  console.log(lectures);
   return (
     <React.Fragment>
       <head>
@@ -27,9 +36,9 @@ const ViewCourses = (props) => {
       <div className={"main-container"}>
         <h1>Your Courses</h1>
 
-        <CourseListContainer
-          labels={["Course Code", "Title", "Teacher"]}
-          items={courses}
+        <LectureListContainer
+          items={lectures}
+          labels={["Lecture ID", "Title", "Date", "Teacher"]}
         />
       </div>
     </React.Fragment>
