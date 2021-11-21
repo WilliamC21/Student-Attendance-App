@@ -1,0 +1,16 @@
+.log-attendance-box {
+  margin: auto;
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-attendance-box select {
+  width: 50%;
+  margin-bottom: 1rem;
+}
+
+.log-attendance-box button {
+  width: 50%;
+}

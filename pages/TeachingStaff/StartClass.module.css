@@ -1,0 +1,16 @@
+.start-class-box {
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.start-class-box select {
+  width: 50%;
+}
+
+.start-class-box button {
+  margin-top: 1rem;
+  font-size: 1rem;
+  width: 50%;
+}

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import CardStyles from "../Card.module.css";
-import Card from "../FeatureCard";
+import LegendCard from "../LegendCard";
 import { HStack, Flex, Spacer, Box } from "@chakra-ui/react";
 import Styles from "./ListLegend.module.css";
 
 const ListLegend = (props) => {
   return (
-    <Card>
+    <LegendCard>
       <Flex width="full">
         {props.labels.map((label, index) => (
           <div className={Styles["label-container"]}>
@@ -15,7 +15,7 @@ const ListLegend = (props) => {
           </div>
         ))}
       </Flex>
-    </Card>
+    </LegendCard>
   );
 };
 
