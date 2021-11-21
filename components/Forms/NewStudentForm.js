@@ -1,48 +1,52 @@
 import React, { useState } from "react";
 import Card from "../../components/UI/Card";
 import Styles from "./FormContainer.module.css";
+import { PrismaClient } from "@prisma/client";
 
 const NewStudentForm = (props) => {
-  //state control to hide or reveal form
+  //State allowing choice of what to display in form
   const [isEditing, setIsEditing] = useState(false);
-
   const startEditingHandler = () => {
     setIsEditing(true);
   };
-
   const stopEditingHandler = () => {
     setIsEditing(false);
   };
 
-  const saveStudentDataHandler = (enteredStudentData) => {
-    const studentData = {
-      ...enteredStudentData,
-    };
+  const [availibleCourses, setAvailibleCourses] = useState(props.courses);
 
-    setIsEditing(false);
-  };
+  let courseOptions = availibleCourses.map((item, i) => {
+    return (
+      <option key={i} value={item.courseID}>
+        {item.courseName} - {item.courseID}
+      </option>
+    );
+  });
 
+  //States for student data
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredCourse, setEnteredCourse] = useState("");
 
+  //State for availible courses
+  const [courses, setCourses] = useState(props.initialCourses);
+
+  //Change state handlers
   const firstNameChangeHandler = (event) => {
     setEnteredFirstName(event.target.value);
   };
-
   const lastNameChangeHandler = (event) => {
     setEnteredLastName(event.target.value);
   };
-
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
   };
-
   const courseChangeHandler = (event) => {
     setEnteredCourse(event.target.value);
   };
 
+  //Creating student data object on submit
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -53,10 +57,9 @@ const NewStudentForm = (props) => {
       course: enteredCourse,
     };
 
-    console.log(enteredFirstName);
-    console.log(enteredLastName);
-    console.log(enteredEmail);
-    console.log(enteredCourse);
+    console.log(studentData);
+
+    //clearing fields of form
     setEnteredFirstName("");
     setEnteredLastName("");
     setEnteredEmail("");
@@ -104,9 +107,8 @@ const NewStudentForm = (props) => {
               <div className={Styles["select-group"]}>
                 <label>Course</label>
                 <select value={enteredCourse} onChange={courseChangeHandler}>
-                  <option value=""></option>
-                  <option value="example course 1">Example Course 1</option>
-                  <option value="example course 2y">Example Course 2</option>
+                  <option></option>
+                  {courseOptions}
                 </select>
               </div>
             </div>

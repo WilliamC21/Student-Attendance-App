@@ -3,6 +3,7 @@ import Link from "next/dist/client/link";
 import Styles from "./AdminHome.module.css";
 import Card from "../../components/UI/Card";
 
+//Home page for Admin user type
 export default function AdminHome() {
   return (
     <React.Fragment>

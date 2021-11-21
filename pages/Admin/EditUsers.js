@@ -10,16 +10,19 @@ const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
   const students = await prisma.student.findMany();
+  const courses = await prisma.course.findMany();
 
   return {
     props: {
       initialStudents: students,
+      initialCourses: courses,
     },
   };
 }
 
 const EditUsers = (props) => {
   const [students, setStudents] = useState(props.initialStudents);
+  const [courses, setCourses] = useState(props.initialCourses);
 
   return (
     <React.Fragment>
@@ -29,7 +32,7 @@ const EditUsers = (props) => {
 
       <div className={"main-container"}>
         <h1>Edit Users</h1>
-        <NewStudentForm />
+        <NewStudentForm courses={courses} />
         <ListContainer
           labels={["First Name", "Surname", "Email", "Attendance"]}
           items={students}
