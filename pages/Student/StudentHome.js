@@ -7,9 +7,27 @@ import HalfCard from "../../components/UI/HalfCard";
 import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { PrismaClient } from "@prisma/client";
 
-export default function StudentHome() {
-  let percentage = 100;
+const prisma = new PrismaClient();
+
+export async function getServerSideProps() {
+  const student = await prisma.student.findUnique({
+    where: {
+      id: 2,
+    },
+  });
+
+  return {
+    props: {
+      student: student,
+    },
+  };
+}
+
+export default function StudentHome(props) {
+  let attendancePercentage = props.student.attendance;
+
   return (
     <React.Fragment>
       <head>
@@ -44,8 +62,8 @@ export default function StudentHome() {
               </div>
               <div className={Styles["glance-left"]}>
                 <CircularProgressbar
-                  value={percentage}
-                  text={`${percentage}%`}
+                  value={attendancePercentage}
+                  text={`${attendancePercentage}%`}
                 />
               </div>
             </div>
