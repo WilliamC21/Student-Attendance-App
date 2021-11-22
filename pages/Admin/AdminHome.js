@@ -18,10 +18,10 @@ export default function AdminHome() {
               <button>Edit Users</button>
             </Link>
             <Link href="./EditCourses">
-              <button>Edit Classes</button>
+              <button>Edit Courses</button>
             </Link>
             <Link href="./EditClassrooms">
-              <button>Edit Rooms</button>
+              <button>Edit Classrooms</button>
             </Link>
           </Card>
         </div>
