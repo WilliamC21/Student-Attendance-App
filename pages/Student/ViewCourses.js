@@ -6,17 +6,25 @@ import { useState } from "react";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const courses = await prisma.course.findMany();
+  const studentsCourses = await prisma.student.findUnique({
+    where: {
+      id: 1,
+    },
+
+    include: {
+      enrolledInCourse: {},
+    },
+  });
 
   return {
     props: {
-      initialCourses: courses,
+      studentsCourses: studentsCourses.enrolledInCourse,
     },
   };
 }
 
 const ViewCourses = (props) => {
-  const [courses, setCourses] = useState(props.initialCourses);
+  const [courses, setCourses] = useState(props.studentsCourses);
   console.log(courses);
   return (
     <React.Fragment>

@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 export async function getServerSideProps() {
   const teachersLecture = await prisma.staff.findUnique({
     where: {
-      id: 2,
+      id: 1,
     },
 
     include: {
@@ -27,12 +27,6 @@ export async function getServerSideProps() {
 
 const StartClass = (props) => {
   const [lectures, setLectures] = useState(props.teachersLecture);
-
-  {
-    lectures.map((lecture) => (
-      <option value={lecture.id}>{lecture.lectureName}</option>
-    ));
-  }
 
   return (
     <React.Fragment>
