@@ -27,7 +27,22 @@ export async function getServerSideProps() {
 
 const LogAttendance = (props) => {
   const [lectures, setLectures] = useState(props.studentsLectures);
+  const [enteredCode, setEnteredCode] = useState("");
+  const [chosenLecture, setChosenLecture] = useState("");
 
+  const codeChangeHandler = (event) => {
+    setEnteredCode(event.target.value);
+  };
+
+  const chosenLectureChangeHandler = (event) => {
+    setChosenLecture(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log(enteredCode);
+    console.log(chosenLecture);
+  };
   return (
     <React.Fragment>
       <h1>Log Attendance</h1>
@@ -35,14 +50,20 @@ const LogAttendance = (props) => {
       <div className="main-container">
         <Card>
           <div className={Styles["log-attendance-box"]}>
-            <label>Select lecture to attend</label>
-            <select>
-              <option value={""}></option>
-              {lectures.map((lecture) => (
-                <option value={lecture.id}>{lecture.lectureName}</option>
-              ))}
-            </select>
-            <button>Attend this lecture</button>
+            <form onSubmit={submitHandler}>
+              <label>Select lecture to attend</label>
+              <select onChange={chosenLectureChangeHandler}>
+                <option value={""}></option>
+                {lectures.map((lecture) => (
+                  <option value={lecture.id}>{lecture.lectureName}</option>
+                ))}
+              </select>
+
+              <label for="code-input">Enter Code</label>
+              <input id="code-input" onChange={codeChangeHandler} />
+
+              <button type="submit">Attend this lecture</button>
+            </form>
           </div>
         </Card>
       </div>

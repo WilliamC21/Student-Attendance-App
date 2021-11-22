@@ -29,8 +29,6 @@ const StartClass = (props) => {
   const [availibleLectures, setAvailibleLectures] = useState(
     props.teachersLectures
   );
-  const [lectureCode, setLectureCode] = useState("XXXX");
-
   let lectureOptions = availibleLectures.map((item, i) => {
     return (
       <option key={i} value={item.id}>
@@ -39,16 +37,17 @@ const StartClass = (props) => {
     );
   });
 
+  const [lectureCode, setLectureCode] = useState("XXXX");
+
   const [selectedLecture, setSelectedLecture] = useState("");
 
   const lectureChangeHandler = (event) => {
     setSelectedLecture(event.target.value);
+    setLectureCode(Math.floor(1000 + Math.random() * 9000));
   };
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(selectedLecture);
-
-    setLectureCode(Math.floor(1000 + Math.random() * 9000));
     console.log(lectureCode);
   };
 

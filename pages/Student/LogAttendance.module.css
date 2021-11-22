@@ -8,9 +8,13 @@
 
 .log-attendance-box select {
   width: 50%;
-  margin-bottom: 1rem;
 }
 
 .log-attendance-box button {
   width: 50%;
+}
+
+.log-attendance-box input {
+  width: 50%;
+  margin-bottom: 1rem;
 }
