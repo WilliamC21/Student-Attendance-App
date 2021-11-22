@@ -107,7 +107,6 @@ const NewStudentForm = (props) => {
               <div className={Styles["select-group"]}>
                 <label>Course</label>
                 <select value={enteredCourse} onChange={courseChangeHandler}>
-                  <option></option>
                   {courseOptions}
                 </select>
               </div>

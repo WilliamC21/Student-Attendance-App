@@ -20,13 +20,37 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      teachersLecture: teachersLecture.teachesLecture,
+      teachersLectures: teachersLecture.teachesLecture,
     },
   };
 }
 
 const StartClass = (props) => {
-  const [lectures, setLectures] = useState(props.teachersLecture);
+  const [availibleLectures, setAvailibleLectures] = useState(
+    props.teachersLectures
+  );
+  const [lectureCode, setLectureCode] = useState("XXXX");
+
+  let lectureOptions = availibleLectures.map((item, i) => {
+    return (
+      <option key={i} value={item.id}>
+        {item.lectureName}
+      </option>
+    );
+  });
+
+  const [selectedLecture, setSelectedLecture] = useState("");
+
+  const lectureChangeHandler = (event) => {
+    setSelectedLecture(event.target.value);
+  };
+  const submitHandler = (event) => {
+    event.preventDefault();
+    console.log(selectedLecture);
+
+    setLectureCode(Math.floor(1000 + Math.random() * 9000));
+    console.log(lectureCode);
+  };
 
   return (
     <React.Fragment>
@@ -35,17 +59,18 @@ const StartClass = (props) => {
       <div className="main-container">
         <Card>
           <div className={Styles["start-class-box"]}>
-            <select>
-              <option value={""}></option>
-              {lectures.map((lecture) => (
-                <option value={lecture.id}>{lecture.lectureName}</option>
-              ))}
-            </select>
-            <button>Start Class</button>
+            <form onSubmit={submitHandler}>
+              <label>Select Lecture to start</label>
+              <select value={selectedLecture} onChange={lectureChangeHandler}>
+                <option></option>
+                {lectureOptions}
+              </select>
+              <button type="submit">Start Class</button>
+            </form>
           </div>
         </Card>
         <Card>
-          <h1>Generated Code Here</h1>
+          <h1>{lectureCode}</h1>
         </Card>
       </div>
     </React.Fragment>
