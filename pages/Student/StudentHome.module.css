@@ -6,6 +6,7 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
+  align-self: center;
 }
 
 .button-container {
@@ -14,10 +15,6 @@
   margin: auto;
   padding: 10px;
   font-family: "Montserrat";
-}
-
-.main-container {
-  align-self: center;
 }
 
 .main-container button {
@@ -47,24 +44,41 @@
 }
 
 .glance-container {
+  height: 320;
   flex-wrap: wrap;
   display: flex;
   flex-direction: row;
+  color: #f1faee;
   justify-content: space-between;
+}
+.glance-container h1 {
+  align-self: flex-start;
+  padding: 0;
+  margin: 0;
+  font-size: 2.5rem;
+  text-align: start;
+  text-decoration: none;
+}
+
+.glance-container h3 {
+  font-size: 1.5rem;
+}
+
+.glance-container p {
+  font-size: 1.2rem;
 }
 
 .glance-left {
   width: 50%;
-  height: 90%;
+  height: 100%;
   flex-wrap: wrap;
   align-items: flex-start;
   text-align: start;
 }
 
-.circle {
-  background-color: rgb(84, 145, 84);
+.attendance-bar {
   margin: auto;
-  height: 250px;
-  width: 250px;
-  border-radius: 100%;
+  align-self: center;
+  justify-content: center;
+  justify-self: center;
 }
