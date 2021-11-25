@@ -10,7 +10,7 @@ const ListLegend = (props) => {
     <LegendCard>
       <Flex width="full">
         {props.labels.map((label, index) => (
-          <div className={Styles["label-container"]}>
+          <div className={Styles["label-container"]} key={index}>
             <h2 key={index}>{label}</h2>
           </div>
         ))}
