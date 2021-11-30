@@ -38,10 +38,11 @@ const NewStudentForm = (props) => {
     const data = {
       courseID: enteredCourseID,
       courseName: enteredCourseName,
-      //courseTeacher: enteredCourseTeacher,
+      teacherID: +enteredCourseTeacher,
     };
 
     console.log(data);
+
     await axios
       .post("/api/Admin/EditCourses", data)
       .then(function (response) {
@@ -49,7 +50,7 @@ const NewStudentForm = (props) => {
         console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
+        console.log(error.response.data);
       });
 
     setEnteredCourseID("");

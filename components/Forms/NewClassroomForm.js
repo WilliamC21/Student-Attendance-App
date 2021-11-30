@@ -30,16 +30,6 @@ const NewStudentForm = (props) => {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    // const data = {
-    //   firstName: "test",
-    //   lastName: "test",
-    //   email: "test",
-    //   totalClasses: 0,
-    //   classesAttended: 0,
-    //   attendance: 0,
-    //   //courseID: enteredCourse,
-    // };
-
     const data = {
       roomNum: enteredRoomNum,
       building: enteredBuilding,
