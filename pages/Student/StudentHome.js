@@ -56,7 +56,7 @@ export default function StudentHome(props) {
               <button>View Attendance</button>
             </Link>
             <Link href="./ViewCourses">
-              <button>View Classes</button>
+              <button>View Courses</button>
             </Link>
             <Link href="./ViewGrades">
               <button>View Grades</button>

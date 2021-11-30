@@ -8,7 +8,7 @@ export default function AdminHome() {
   return (
     <React.Fragment>
       <head>
-        <title>Teaching Staff Home</title>
+        <title>Administrator Staff Home</title>
       </head>
 
       <body>

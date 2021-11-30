@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Card from "../../components/UI/Card";
 import Styles from "./FormContainer.module.css";
-import { PrismaClient } from "@prisma/client";
+
+const axios = require("axios");
 
 const NewStudentForm = (props) => {
   //State allowing choice of what to display in form
@@ -47,19 +48,30 @@ const NewStudentForm = (props) => {
   };
 
   //Creating student data object on submit
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
-    const studentData = {
+    const data = {
       firstName: enteredFirstName,
       lastName: enteredLastName,
       email: enteredEmail,
-      course: enteredCourse,
+      totalClasses: 0,
+      classesAttended: 0,
+      attendance: 0,
+      //courseID: enteredCourse,
     };
 
-    console.log(studentData);
+    await axios
+      .post("/api/Admin/EditStudents", data)
+      .then(function (response) {
+        //window.location.reload();
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
-    //clearing fields of form
+    //clear the fields of form
     setEnteredFirstName("");
     setEnteredLastName("");
     setEnteredEmail("");

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card from "../../components/UI/Card";
 import Styles from "./FormContainer.module.css";
 
+const axios = require("axios");
+
 const NewStudentForm = (props) => {
   //state control to hide or reveal form
   const [isEditing, setIsEditing] = useState(false);
@@ -19,29 +21,36 @@ const NewStudentForm = (props) => {
   const [enteredCourseTeacher, setEnteredCourseTeacher] = useState("");
 
   const courseIDChangeHandler = (event) => {
-    setEnteredFirstName(event.target.value);
+    setEnteredCourseID(event.target.value);
   };
 
   const courseNameChangeHandler = (event) => {
-    setEnteredLastName(event.target.value);
+    setEnteredCourseName(event.target.value);
   };
 
   const courseTeacherChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+    setEnteredCourseTeacher(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
-    const courseData = {
+    const data = {
       courseID: enteredCourseID,
       courseName: enteredCourseName,
-      courseTeacher: enteredCourseTeacher,
+      //courseTeacher: enteredCourseTeacher,
     };
 
-    console.log(enteredCourseID);
-    console.log(enteredCourseName);
-    console.log(enteredCourseTeacher);
+    console.log(data);
+    await axios
+      .post("/api/Admin/EditCourses", data)
+      .then(function (response) {
+        //window.location.reload();
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     setEnteredCourseID("");
     setEnteredCourseName("");

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Card from "../UI/Card";
 import Styles from "./FormContainer.module.css";
 
+const axios = require("axios");
+
 const NewStudentForm = (props) => {
   //state control to hide or reveal form
   const [isEditing, setIsEditing] = useState(false);
@@ -25,16 +27,33 @@ const NewStudentForm = (props) => {
     setEnteredBuilding(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
-    const roomData = {
+    // const data = {
+    //   firstName: "test",
+    //   lastName: "test",
+    //   email: "test",
+    //   totalClasses: 0,
+    //   classesAttended: 0,
+    //   attendance: 0,
+    //   //courseID: enteredCourse,
+    // };
+
+    const data = {
       roomNum: enteredRoomNum,
       building: enteredBuilding,
     };
 
-    console.log(enteredRoomNum);
-    console.log(enteredBuilding);
+    await axios
+      .post("/api/Admin/EditClassrooms", data)
+      .then(function (response) {
+        //window.location.reload();
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error.response.data);
+      });
 
     setEnteredRoomNum("");
     setEnteredBuilding("");
@@ -61,7 +80,7 @@ const NewStudentForm = (props) => {
               </div>
 
               <div>
-                <label>Buidling</label>
+                <label>Building</label>
                 <input
                   type="text"
                   value={enteredBuilding}

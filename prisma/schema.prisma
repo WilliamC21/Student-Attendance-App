@@ -1,79 +1,73 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
   provider = "sqlite"
   url      = "file:.dev.db"
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model Student {
-  id Int @id @default(autoincrement())
-  firstName String
-  lastName String
-  email String
-  totalClasses Int
-  classesAttended Int
-  attendance Int
-  enrolledInLecture Lecture []
-  enrolledInCourse Course[]
-  gradesObtained Grade []
+  id                Int       @id @default(autoincrement())
+  firstName         String
+  lastName          String
+  email             String
+  totalClasses      Int
+  classesAttended   Int
+  attendance        Int
+  gradesObtained    Grade[]
+  enrolledInCourse  Course[]
+  enrolledInLecture Lecture[]
 }
 
 model Staff {
-  id Int @id @default(autoincrement())
-  firstName String
-  lastName String
-  email String
-  isAdmin Boolean
-  isTeacher Boolean
+  id             Int       @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  email          String
+  isAdmin        Boolean
+  isTeacher      Boolean
+  teachesCourse  Course[]
   teachesLecture Lecture[]
-  teachesCourse Course[]
 }
 
 model ClassRoom {
-  roomNum String @id 
-  building String
-  hasLectures Lecture[]
+  id          Int @id @default(autoincrement())
+  roomNum     String    
+  building    String
+  //hasLectures Lecture[]
 }
 
 model Lecture {
-  id String @id
+  id          String    @id
   lectureName String
-  roomNum String
-  dateTime String 
-  teacherID Int
-  courseID String
-  students Student[]
-  occursIn ClassRoom @relation(fields: [roomNum], references: [roomNum])
-  taughtBy Staff @relation(fields: [teacherID], references:[id])
-  forCourse Course @relation(fields: [courseID], references: [courseID])
-
+  roomNum     String
+  dateTime    String
+  teacherID   Int
+  courseID    String
+  forCourse   Course    @relation(fields: [courseID], references: [courseID])
+  //occursIn    ClassRoom @relation(fields: [roomNum], references: [id])
+  taughtBy    Staff     @relation(fields: [teacherID], references: [id])
+  students    Student[]
 }
 
 model Course {
-  courseID String @id
-  courseName String
-  teacherID Int
-  taughtBy Staff @relation(fields: [teacherID], references: [id])
-  hasLectures Lecture[]
-  hasAssessments Grade[]
+  courseID         String    @id
+  courseName       String
+  teacherID        Int
+  taughtBy         Staff     @relation(fields: [teacherID], references: [id])
+  hasAssessments   Grade[]
+  hasLectures      Lecture[]
   enrolledStudents Student[]
-
 }
 
-model Grade { 
-  gradeID String @id
-  returnDate String
+model Grade {
+  gradeID        String  @id
+  returnDate     String
   assessmentName String
-  gradePercent Int
-  studentID Int
-  courseID String
-  student Student @relation(fields: [studentID], references: [id])
-  course Course @relation(fields: [courseID], references: [courseID])
+  gradePercent   Int
+  studentID      Int
+  courseID       String
+  course         Course  @relation(fields: [courseID], references: [courseID])
+  student        Student @relation(fields: [studentID], references: [id])
 }
