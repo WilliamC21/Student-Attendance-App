@@ -27,7 +27,6 @@ model Staff {
   email          String
   isAdmin        Boolean
   isTeacher      Boolean
-
   teachesLecture Lecture[]
 }
 
@@ -45,6 +44,7 @@ model Lecture {
   dateTime    String
   teacherID   Int
   courseID    String
+  lectureCode Int       @default(0000)
   forCourse   Course    @relation(fields: [courseID], references: [courseID])
   //occursIn    ClassRoom @relation(fields: [roomNum], references: [id])
   taughtBy    Staff     @relation(fields: [teacherID], references: [id])
