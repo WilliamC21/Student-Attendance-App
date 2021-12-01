@@ -17,7 +17,7 @@ model Student {
   attendance        Int
   gradesObtained    Grade[]
   enrolledInCourse  Course[]
-  enrolledInLecture Lecture[]
+  lectures StudentOnLecture[]
 }
 
 model Staff {
@@ -31,24 +31,34 @@ model Staff {
 }
 
 model ClassRoom {
-  id          Int @id @default(autoincrement())
-  roomNum     String    
+  roomNum     String    @id
   building    String
-  //hasLectures Lecture[]
+  hasLectures Lecture[]
 }
 
 model Lecture {
   id          String    @id
   lectureName String
-  roomNum     String
-  dateTime    String
+  dateTime    String 
+  room        String
+  occursIn    ClassRoom @relation(fields: [room], references: [roomNum])
   teacherID   Int
-  courseID    String
-  lectureCode Int       @default(0000)
-  forCourse   Course    @relation(fields: [courseID], references: [courseID])
-  //occursIn    ClassRoom @relation(fields: [roomNum], references: [id])
   taughtBy    Staff     @relation(fields: [teacherID], references: [id])
-  students    Student[]
+  courseID    String
+  forCourse   Course    @relation(fields: [courseID], references: [courseID])
+  lectureCode Int       @default(0000)
+  hasStarted  Boolean   @default(false)  
+  students    StudentOnLecture[]
+}
+
+model StudentOnLecture {
+  student Student @relation(fields: [studentID], references: [id])
+  studentID Int 
+  lecture Lecture @relation(fields: [lectureID], references: [id])
+  lectureID String
+  attended Boolean
+
+  @@id([studentID, lectureID])
 }
 
 model Course {

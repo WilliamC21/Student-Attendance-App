@@ -10,6 +10,7 @@ export default async (req, res) => {
       },
       data: {
         lectureCode: req.body.lectureCode,
+        hasStarted: true,
       },
     });
 

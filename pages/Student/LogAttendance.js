@@ -8,25 +8,30 @@ import { useState } from "react";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const studentsLecture = await prisma.student.findUnique({
+  const data = await prisma.student.findUnique({
     where: {
       id: 1,
     },
-
     include: {
-      enrolledInLecture: {},
+      lectures: {
+        include: {
+          lecture: true,
+        },
+      },
     },
   });
 
   return {
     props: {
-      studentsLectures: studentsLecture.enrolledInLecture,
+      student: data,
+      lectures: data.lectures,
+      lecture: data.lectures,
     },
   };
 }
 
 const LogAttendance = (props) => {
-  const [lectures, setLectures] = useState(props.studentsLectures);
+  const [lectures, setLectures] = useState(props.lectures);
   const [enteredCode, setEnteredCode] = useState("");
   const [chosenLecture, setChosenLecture] = useState("");
 
@@ -42,6 +47,14 @@ const LogAttendance = (props) => {
     event.preventDefault();
     console.log(enteredCode);
     console.log(chosenLecture);
+
+    console.log(lectures[0].lecture.lectureCode);
+
+    if (enteredCode == lectures[0].lecture.lectureCode) {
+      console.log("PASS");
+    } else {
+      console.log("FAIL");
+    }
   };
   return (
     <React.Fragment>
@@ -55,7 +68,9 @@ const LogAttendance = (props) => {
               <select onChange={chosenLectureChangeHandler}>
                 <option value={""}></option>
                 {lectures.map((lecture) => (
-                  <option value={lecture.id}>{lecture.lectureName}</option>
+                  <option value={lecture.lecture.id}>
+                    {lecture.lecture.lectureName}-{lecture.lecture.id}
+                  </option>
                 ))}
               </select>
 

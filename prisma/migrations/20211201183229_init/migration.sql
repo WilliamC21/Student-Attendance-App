@@ -29,21 +29,33 @@ CREATE TABLE "ClassRoom" (
 CREATE TABLE "Lecture" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "lectureName" TEXT NOT NULL,
-    "roomNum" TEXT NOT NULL,
     "dateTime" TEXT NOT NULL,
+    "room" TEXT NOT NULL,
     "teacherID" INTEGER NOT NULL,
     "courseID" TEXT NOT NULL,
-    CONSTRAINT "Lecture_roomNum_fkey" FOREIGN KEY ("roomNum") REFERENCES "ClassRoom" ("roomNum") ON DELETE RESTRICT ON UPDATE CASCADE,
+    "lectureCode" INTEGER NOT NULL DEFAULT 0,
+    "hasStarted" BOOLEAN NOT NULL DEFAULT false,
+    CONSTRAINT "Lecture_room_fkey" FOREIGN KEY ("room") REFERENCES "ClassRoom" ("roomNum") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Lecture_teacherID_fkey" FOREIGN KEY ("teacherID") REFERENCES "Staff" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT "Lecture_courseID_fkey" FOREIGN KEY ("courseID") REFERENCES "Course" ("courseID") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "StudentOnLecture" (
+    "studentID" INTEGER NOT NULL,
+    "lectureID" TEXT NOT NULL,
+    "attended" BOOLEAN NOT NULL,
+
+    PRIMARY KEY ("studentID", "lectureID"),
+    CONSTRAINT "StudentOnLecture_studentID_fkey" FOREIGN KEY ("studentID") REFERENCES "Student" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "StudentOnLecture_lectureID_fkey" FOREIGN KEY ("lectureID") REFERENCES "Lecture" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
 CREATE TABLE "Course" (
     "courseID" TEXT NOT NULL PRIMARY KEY,
     "courseName" TEXT NOT NULL,
-    "teacherID" INTEGER NOT NULL,
-    CONSTRAINT "Course_teacherID_fkey" FOREIGN KEY ("teacherID") REFERENCES "Staff" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "teacherID" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -54,16 +66,8 @@ CREATE TABLE "Grade" (
     "gradePercent" INTEGER NOT NULL,
     "studentID" INTEGER NOT NULL,
     "courseID" TEXT NOT NULL,
-    CONSTRAINT "Grade_studentID_fkey" FOREIGN KEY ("studentID") REFERENCES "Student" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "Grade_courseID_fkey" FOREIGN KEY ("courseID") REFERENCES "Course" ("courseID") ON DELETE RESTRICT ON UPDATE CASCADE
-);
-
--- CreateTable
-CREATE TABLE "_LectureToStudent" (
-    "A" TEXT NOT NULL,
-    "B" INTEGER NOT NULL,
-    FOREIGN KEY ("A") REFERENCES "Lecture" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY ("B") REFERENCES "Student" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    CONSTRAINT "Grade_courseID_fkey" FOREIGN KEY ("courseID") REFERENCES "Course" ("courseID") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Grade_studentID_fkey" FOREIGN KEY ("studentID") REFERENCES "Student" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -73,12 +77,6 @@ CREATE TABLE "_CourseToStudent" (
     FOREIGN KEY ("A") REFERENCES "Course" ("courseID") ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY ("B") REFERENCES "Student" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "_LectureToStudent_AB_unique" ON "_LectureToStudent"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_LectureToStudent_B_index" ON "_LectureToStudent"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CourseToStudent_AB_unique" ON "_CourseToStudent"("A", "B");

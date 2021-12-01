@@ -15,11 +15,11 @@ const prisma = new PrismaClient();
 export async function getServerSideProps() {
   const student = await prisma.student.findUnique({
     where: {
-      id: 4,
+      id: 1,
     },
 
     include: {
-      enrolledInLecture: {},
+      lectures: {},
       gradesObtained: {},
     },
   });
@@ -27,7 +27,7 @@ export async function getServerSideProps() {
   return {
     props: {
       student: student,
-      lectures: student.enrolledInLecture,
+      lectures: student.lectures,
       grades: student.gradesObtained,
     },
   };
@@ -69,7 +69,7 @@ export default function StudentHome(props) {
                 <h1>At a Glance</h1>
 
                 <h3 className={Styles["glance-text"]}>Your Next Class</h3>
-                <p>{nextLecture.lectureName}</p>
+                {/* <p>{nextLecture.lectureID}</p> */}
 
                 <h3 className={Styles["glance-text"]}>
                   Your Most Recent Grade
