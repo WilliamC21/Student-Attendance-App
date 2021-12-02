@@ -19,6 +19,30 @@
   background-color: #bce5ff;
 }
 
+.feature-card-green {
+  border-radius: 12px;
+  box-shadow: 0 1px 8px #00000040;
+  background-color: #78d480;
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.feature-card-green:hover {
+  background-color: #9de6a3;
+}
+
+.feature-card-red {
+  border-radius: 12px;
+  box-shadow: 0 1px 8px #00000040;
+  background-color: #e76464;
+  padding: 1rem 1rem 1rem 1rem;
+  margin: 1rem 1rem 1rem 1rem;
+}
+
+.feature-card-red:hover {
+  background-color: #ee8888;
+}
+
 .legend-card {
   border-radius: 12px;
   box-shadow: 0 1px 8px #00000040;
