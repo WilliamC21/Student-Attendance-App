@@ -6,11 +6,13 @@ import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 
 const prisma = new PrismaClient();
+const axios = require("axios");
+const userID = 1;
 
 export async function getServerSideProps() {
   const data = await prisma.student.findUnique({
     where: {
-      id: 1,
+      id: userID,
     },
     include: {
       lectures: {
@@ -43,7 +45,7 @@ const LogAttendance = (props) => {
     setChosenLecture(event.target.value);
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     console.log(enteredCode);
     console.log(chosenLecture);
@@ -52,6 +54,21 @@ const LogAttendance = (props) => {
 
     if (enteredCode == lectures[0].lecture.lectureCode) {
       console.log("PASS");
+
+      const data = {
+        lectureID: chosenLecture,
+        studentID: userID,
+      };
+
+      await axios
+        .post("/api/Student/LectureAttendance", data)
+        .then(function (response) {
+          //window.location.reload();
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error.response.data);
+        });
     } else {
       console.log("FAIL");
     }

@@ -50,7 +50,7 @@ const StartClass = (props) => {
     event.preventDefault();
 
     const data = {
-      lectureID: selectedLecture,
+      lectureID: "MATH101-1",
       lectureCode: lectureCode,
     };
     console.log(data);
