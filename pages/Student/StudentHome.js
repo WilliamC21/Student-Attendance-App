@@ -97,7 +97,7 @@ export default function StudentHome(props) {
                   <div
                     style={{
                       fontSize: 23,
-                      marginTop: 70,
+                      marginTop: 250,
                       color: "white",
                       pathColor: "#d6d6d6",
                     }}

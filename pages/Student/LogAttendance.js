@@ -47,12 +47,12 @@ const LogAttendance = (props) => {
 
   const submitHandler = async (event) => {
     event.preventDefault();
-    console.log(enteredCode);
-    console.log(chosenLecture);
 
-    console.log(lectures[0].lecture.lectureCode);
+    const specificLecture = lectures.filter(
+      (lecture) => lecture.lectureID === chosenLecture
+    );
 
-    if (enteredCode == lectures[0].lecture.lectureCode) {
+    if (enteredCode == specificLecture[0].lecture.lectureCode) {
       console.log("PASS");
 
       const data = {

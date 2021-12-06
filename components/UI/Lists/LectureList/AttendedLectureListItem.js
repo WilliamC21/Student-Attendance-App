@@ -6,7 +6,7 @@ import { HStack, Flex, Spacer, Box } from "@chakra-ui/react";
 
 const LectureListItem = (props) => {
   const checkCross = (
-    <div className={Styles["item-container"]}>
+    <div className={Styles["item-container-centre"]}>
       <h2>
         {props.attended ? (
           <img src="https://img.icons8.com/material-outlined/48/000000/checked--v3.png" />
