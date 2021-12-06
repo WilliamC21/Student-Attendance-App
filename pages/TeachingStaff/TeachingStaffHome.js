@@ -20,7 +20,7 @@ export default function TeachingStaffHome() {
               <button>Start a Class</button>
             </Link>
             <Link href="./ViewClasses">
-              <button>View Classes</button>
+              <button>View Lectures</button>
             </Link>
             <Link href="./ViewStudentAttendance">
               <button>View Student Attendance</button>

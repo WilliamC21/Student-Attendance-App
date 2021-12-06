@@ -13,19 +13,24 @@ export async function getServerSideProps() {
 
     include: {
       enrolledInCourse: {},
+      lectures: {},
     },
   });
 
   return {
     props: {
       studentsCourses: studentsCourses.enrolledInCourse,
+      studentLectures: studentsCourses.lectures,
     },
   };
 }
 
 const ViewCourses = (props) => {
   const [courses, setCourses] = useState(props.studentsCourses);
+  const [lectures, setLectures] = useState(props.studentLectures);
+
   console.log(courses);
+  console.log(lectures);
   return (
     <React.Fragment>
       <head>

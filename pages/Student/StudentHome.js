@@ -11,24 +11,33 @@ import "react-circular-progressbar/dist/styles.css";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
+const studentID = 1;
 
 export async function getServerSideProps() {
   const student = await prisma.student.findUnique({
     where: {
-      id: 1,
+      id: studentID,
     },
 
     include: {
       lectures: {},
       gradesObtained: {},
+      _count: {
+        select: {
+          lectures: true,
+        },
+      },
     },
   });
+
+  console.log(JSON.stringify(student, null, 2));
 
   return {
     props: {
       student: student,
       lectures: student.lectures,
       grades: student.gradesObtained,
+      count: student._count,
     },
   };
 }
@@ -37,8 +46,9 @@ export default function StudentHome(props) {
   let attendancePercentage = props.student.attendance;
   let nextLecture = props.lectures[1];
   let recentGrade = props.grades[0];
+  let count = props.count;
 
-  console.log(nextLecture);
+  console.log(count + "this");
 
   return (
     <React.Fragment>

@@ -6,18 +6,27 @@ import { useState } from "react";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const courses = await prisma.course.findMany();
+  const studentsGrades = await prisma.grade.findUnique({
+    where: {
+      gradeID: "MATH101-A",
+    },
+
+    include: {
+      course: {},
+    },
+  });
 
   return {
     props: {
-      initialCourses: courses,
+      grades: studentsGrades,
     },
   };
 }
 
 const ViewGrade = (props) => {
-  const [courses, setCourses] = useState(props.initialCourses);
-  console.log(courses);
+  const [grades, setGrades] = useState(props.grades);
+
+  console.log(grades);
   return (
     <React.Fragment>
       <head>
@@ -26,11 +35,6 @@ const ViewGrade = (props) => {
 
       <div className={"main-container"}>
         <h1>Your Grades</h1>
-
-        <CourseListContainer
-          labels={["Course Code", "Title", "Teacher"]}
-          items={courses}
-        />
       </div>
     </React.Fragment>
   );
