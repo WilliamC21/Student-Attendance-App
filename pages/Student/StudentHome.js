@@ -22,33 +22,27 @@ export async function getServerSideProps() {
     include: {
       lectures: {},
       gradesObtained: {},
-      _count: {
-        select: {
-          lectures: true,
-        },
-      },
     },
   });
-
-  console.log(JSON.stringify(student, null, 2));
 
   return {
     props: {
       student: student,
       lectures: student.lectures,
       grades: student.gradesObtained,
-      count: student._count,
     },
   };
 }
 
 export default function StudentHome(props) {
-  let attendancePercentage = props.student.attendance;
   let nextLecture = props.lectures[1];
   let recentGrade = props.grades[0];
-  let count = props.count;
 
-  console.log(count + "this");
+  let totalLectureCount = props.lectures.length;
+  let totalAttendedCount = props.lectures.filter(
+    (lecture) => lecture.attended == true
+  ).length;
+  let attendancePercentage = (totalAttendedCount / totalLectureCount) * 100;
 
   return (
     <React.Fragment>
@@ -79,7 +73,9 @@ export default function StudentHome(props) {
                 <h1>At a Glance</h1>
 
                 <h3 className={Styles["glance-text"]}>Your Next Class</h3>
-                {/* <p>{nextLecture.lectureID}</p> */}
+                <p>
+                  {nextLecture.lectureName} - {nextLecture.lectureID}
+                </p>
 
                 <h3 className={Styles["glance-text"]}>
                   Your Most Recent Grade
