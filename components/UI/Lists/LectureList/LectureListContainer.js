@@ -8,6 +8,7 @@ const LectureListContainer = (props) => {
       <ListLegend labels={props.labels} />
       {props.items.map((lecture) => (
         <LectureListItem
+          key={lecture.id}
           lectureID={lecture.id}
           lectureName={lecture.lectureName}
           lectureDate={lecture.dateTime}
