@@ -14,3 +14,10 @@
   font-size: 1rem;
   width: 50%;
 }
+
+.alert {
+  margin: auto;
+  text-align: center;
+  font-size: 2rem;
+  color: #f1faee;
+}

@@ -36,6 +36,7 @@ const LogAttendance = (props) => {
   const [lectures, setLectures] = useState(props.lectures);
   const [enteredCode, setEnteredCode] = useState("");
   const [chosenLecture, setChosenLecture] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
 
   const codeChangeHandler = (event) => {
     setEnteredCode(event.target.value);
@@ -45,6 +46,8 @@ const LogAttendance = (props) => {
     setChosenLecture(event.target.value);
   };
 
+  const alert = <div className={Styles["alert"]}>{alertMessage}</div>;
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -52,9 +55,14 @@ const LogAttendance = (props) => {
       (lecture) => lecture.lectureID === chosenLecture
     );
 
+    if (specificLecture.length == 0) {
+      setAlertMessage("Please choose a lecture to attend");
+      return;
+    }
+
     if (enteredCode == specificLecture[0].lecture.lectureCode) {
       console.log("PASS");
-
+      setAlertMessage("Attendance Logged!");
       const data = {
         lectureID: chosenLecture,
         studentID: userID,
@@ -71,6 +79,7 @@ const LogAttendance = (props) => {
         });
     } else {
       console.log("FAIL");
+      setAlertMessage("Incorrect Code Entered");
     }
   };
   return (
@@ -95,6 +104,7 @@ const LogAttendance = (props) => {
               <input id="code-input" onChange={codeChangeHandler} />
 
               <button type="submit">Attend this lecture</button>
+              <div>{alert}</div>
             </form>
           </div>
         </Card>

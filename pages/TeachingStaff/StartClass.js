@@ -30,6 +30,7 @@ const StartClass = (props) => {
   const [availibleLectures, setAvailibleLectures] = useState(
     props.teachersLectures
   );
+
   let lectureOptions = availibleLectures.map((item, i) => {
     return (
       <option key={i} value={item.id}>
@@ -39,13 +40,16 @@ const StartClass = (props) => {
   });
 
   const [lectureCode, setLectureCode] = useState("XXXX");
-
   const [selectedLecture, setSelectedLecture] = useState("");
+  const [alertVisible, setAlertVisible] = useState(false);
 
   const lectureChangeHandler = (event) => {
     setSelectedLecture(event.target.value);
     setLectureCode(Math.floor(1000 + Math.random() * 9000));
   };
+
+  const alert = <div>TEST</div>;
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -64,6 +68,8 @@ const StartClass = (props) => {
       .catch(function (error) {
         console.log(error.response.data);
       });
+
+    setAlertVisible(true);
   };
 
   return (
@@ -79,12 +85,17 @@ const StartClass = (props) => {
                 <option></option>
                 {lectureOptions}
               </select>
-              <button type="submit">Start Class</button>
+              <button type="submit">Start Lecture</button>
             </form>
           </div>
         </Card>
         <Card>
           <h1>{lectureCode}</h1>
+          {alertVisible ? (
+            <div className={Styles["alert"]}>Lecture Started</div>
+          ) : (
+            <div />
+          )}
         </Card>
       </div>
     </React.Fragment>
