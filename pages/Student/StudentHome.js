@@ -25,21 +25,23 @@ export async function getServerSideProps() {
     },
   });
 
+  const lectures = await prisma.lecture.findMany({});
   return {
     props: {
       student: student,
       lectures: student.lectures,
       grades: student.gradesObtained,
+      lectureInfo: lectures,
     },
   };
 }
 
 export default function StudentHome(props) {
-  let nextLecture = props.lectures[1];
+  let nextLecture = props.lectureInfo[1];
   let recentGrade = props.grades[0];
 
   let totalLectureCount = props.lectures.length;
-  console.log(props.lectures);
+  console.log(props.lectureInfo);
 
   let totalAttendedCount = props.lectures.filter(
     (lecture) => lecture.attended == true
@@ -75,16 +77,23 @@ export default function StudentHome(props) {
               <div className={Styles["glance-left"]}>
                 <h1>At a Glance</h1>
 
-                <h3 className={Styles["glance-text"]}>Your Next Class</h3>
+                <h3 className={Styles["glance-text"]}>
+                  <u>Your Next Class</u>
+                </h3>
                 <p>
-                  {nextLecture.lectureName} - {nextLecture.lectureID}
+                  <i>Lecture: {nextLecture.lectureName}</i>
+                </p>
+                <p>
+                  <i>Location: {nextLecture.room}</i>
                 </p>
 
                 <h3 className={Styles["glance-text"]}>
-                  Your Most Recent Grade
+                  <u> Your Most Recent Grade</u>
                 </h3>
                 <p>
-                  {recentGrade.assessmentName} - {recentGrade.gradePercent}%
+                  <i>
+                    {recentGrade.assessmentName} - {recentGrade.gradePercent}%
+                  </i>
                 </p>
               </div>
               <div className={Styles["glance-left"]}>
@@ -99,6 +108,7 @@ export default function StudentHome(props) {
                       marginTop: 250,
                       color: "white",
                       pathColor: "#d6d6d6",
+                      textColor: "#f1faee",
                     }}
                   >
                     Your Attendance
