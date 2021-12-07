@@ -101,7 +101,7 @@ const LogAttendance = (props) => {
                 ))}
               </select>
 
-              <label for="code-input">Enter Code</label>
+              <label htmlFor="code-input">Enter Code</label>
               <input id="code-input" onChange={codeChangeHandler} />
 
               <button type="submit">Attend this lecture</button>

@@ -66,7 +66,7 @@ const BasicForm = (props) => {
           />
           {usernameHasError && (
             <p className={Styles["error-text"]}>
-              Username field can't be empty
+              Username field can&apos;t be empty
             </p>
           )}
         </div>
@@ -83,7 +83,7 @@ const BasicForm = (props) => {
           />
           {passwordHasError && (
             <p className={Styles["error-text"]}>
-              Password field can't be empty
+              Password field can&apos;t be empty
             </p>
           )}
         </div>
