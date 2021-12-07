@@ -24,3 +24,8 @@
   margin-top: 1rem;
   color: #f1faee;
 }
+
+.nav {
+  display: flex;
+  flex-direction: row;
+}

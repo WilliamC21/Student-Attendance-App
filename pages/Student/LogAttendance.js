@@ -4,6 +4,7 @@ import Card from "../../components/UI/Card";
 import Styles from "./LogAttendance.module.css";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import FooterNav from "../../components/layout/FooterNav";
 
 const prisma = new PrismaClient();
 const axios = require("axios");
@@ -106,6 +107,19 @@ const LogAttendance = (props) => {
               <button type="submit">Attend this lecture</button>
               <div>{alert}</div>
             </form>
+          </div>
+        </Card>
+        <Card>
+          <div className={Styles["nav"]}>
+            <Link href="./ViewAttendance">
+              <button>View Attendance</button>
+            </Link>
+            <Link href="./ViewCourses">
+              <button>View Courses</button>
+            </Link>
+            <Link href="./ViewGrades">
+              <button>View Grades</button>
+            </Link>
           </div>
         </Card>
       </div>

@@ -3,6 +3,7 @@ import Link from "next/dist/client/link";
 import Header from "../../components/layout/Header";
 import Styles from "./StudentHome.module.css";
 import HalfCard from "../../components/UI/HalfCard";
+import FooterNav from "../../components/layout/FooterNav";
 import FeatureCard from "../../components/UI/FeatureCard";
 //import Button from "../../components/UI/Button";
 import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
@@ -41,7 +42,6 @@ export default function StudentHome(props) {
   let recentGrade = props.grades[0];
 
   let totalLectureCount = props.lectures.length;
-  console.log(props.lectureInfo);
 
   let totalAttendedCount = props.lectures.filter(
     (lecture) => lecture.attended == true

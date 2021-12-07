@@ -1,7 +1,8 @@
 import React from "react";
-
+import Card from "../../components/UI/Card";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import Link from "next/dist/client/link";
 import AttendedLectureListContainer from "../../components/UI/Lists/LectureList/AttendedLectureListContainer";
 
 const prisma = new PrismaClient();
@@ -45,6 +46,20 @@ const ViewAttendance = (props) => {
           items={lectures}
           labels={["Course", "Lecture", "Lecture ID", "Date", "Attended"]}
         />
+
+        <Card>
+          <div className="nav">
+            <Link href="./LogAttendance">
+              <button>Log Attendance</button>
+            </Link>
+            <Link href="./ViewCourses">
+              <button>View Courses</button>
+            </Link>
+            <Link href="./ViewGrades">
+              <button>View Grades</button>
+            </Link>
+          </div>
+        </Card>
       </div>
     </React.Fragment>
   );

@@ -3,6 +3,9 @@ import GradesListContainer from "../../components/UI/Lists/GradesList/GradesList
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 
+import Card from "../../components/UI/Card";
+import Link from "next/dist/client/link";
+
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
@@ -36,6 +39,19 @@ const ViewGrade = (props) => {
           labels={["Course Code", "Assessment", "Mark Achieved"]}
           items={grades}
         />
+        <Card>
+          <div className="nav">
+            <Link href="./LogAttendance">
+              <button>Log Attendance</button>
+            </Link>
+            <Link href="./ViewAttendance">
+              <button>View Attendance</button>
+            </Link>
+            <Link href="./ViewCourses">
+              <button>View Courses</button>
+            </Link>
+          </div>
+        </Card>
       </div>
     </React.Fragment>
   );
