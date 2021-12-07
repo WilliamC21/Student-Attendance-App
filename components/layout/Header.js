@@ -17,16 +17,16 @@ const Header = (props) => {
           </Link>
         </div>
         <div className={Styles.right}>
-          <Link href="/">
-            <button className={Styles["logout-button"]}>Previous Page</button>
-          </Link>
-
           <button
             className={Styles["logout-button"]}
             onClick={() => router.back()}
           >
-            Logout
+            Previous Page
           </button>
+
+          <Link href="/">
+            <button className={Styles["logout-button"]}>Logout</button>
+          </Link>
         </div>
       </Flex>
     </React.Fragment>
