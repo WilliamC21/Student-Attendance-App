@@ -39,9 +39,12 @@ export default function StudentHome(props) {
   let recentGrade = props.grades[0];
 
   let totalLectureCount = props.lectures.length;
+  console.log(props.lectures);
+
   let totalAttendedCount = props.lectures.filter(
     (lecture) => lecture.attended == true
   ).length;
+
   let attendancePercentage = (totalAttendedCount / totalLectureCount) * 100;
 
   return (

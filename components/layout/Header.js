@@ -1,10 +1,13 @@
 import Link from "next/dist/client/link";
 import { Button, Flex } from "@chakra-ui/react";
 import React from "react";
+import { useRouter } from "next/dist/client/router";
 
 import Styles from "./Header.module.css";
 
 const Header = (props) => {
+  const router = useRouter();
+
   return (
     <React.Fragment>
       <Flex className={Styles.header}>
@@ -15,8 +18,15 @@ const Header = (props) => {
         </div>
         <div className={Styles.right}>
           <Link href="/">
-            <button className={Styles["logout-button"]}>Logout</button>
+            <button className={Styles["logout-button"]}>Previous Page</button>
           </Link>
+
+          <button
+            className={Styles["logout-button"]}
+            onClick={() => router.back()}
+          >
+            Logout
+          </button>
         </div>
       </Flex>
     </React.Fragment>

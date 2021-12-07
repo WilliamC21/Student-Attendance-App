@@ -27,6 +27,7 @@
   border-color: transparent;
   display: block;
   align-self: flex-end;
+  margin-right: 1rem;
 }
 .logout-button:hover,
 .logout-button:active {
@@ -37,7 +38,8 @@
 .right {
   margin-top: auto;
   margin-bottom: auto;
-
+  display: flex;
+  flex-direction: row;
   text-align: center;
   justify-content: center;
 }

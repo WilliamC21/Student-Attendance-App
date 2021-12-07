@@ -79,4 +79,6 @@ model Grade {
   courseID       String
   course         Course  @relation(fields: [courseID], references: [courseID])
   student        Student @relation(fields: [studentID], references: [id])
+
+
 }

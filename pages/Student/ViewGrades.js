@@ -1,18 +1,14 @@
 import React from "react";
-import CourseListContainer from "../../components/UI/Lists/CourseList/CourseListContainer";
+import GradesListContainer from "../../components/UI/Lists/GradesList/GradesListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const studentsGrades = await prisma.grade.findUnique({
+  const studentsGrades = await prisma.grade.findMany({
     where: {
-      gradeID: "MATH101-A",
-    },
-
-    include: {
-      course: {},
+      studentID: 1,
     },
   });
 
@@ -35,6 +31,11 @@ const ViewGrade = (props) => {
 
       <div className={"main-container"}>
         <h1>Your Grades</h1>
+
+        <GradesListContainer
+          labels={["Course Code", "Assessment", "Mark Achieved"]}
+          items={grades}
+        />
       </div>
     </React.Fragment>
   );
