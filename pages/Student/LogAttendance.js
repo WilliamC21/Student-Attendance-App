@@ -95,7 +95,7 @@ const LogAttendance = (props) => {
               <select onChange={chosenLectureChangeHandler}>
                 <option value={""}></option>
                 {lectures.map((lecture) => (
-                  <option value={lecture.lecture.id}>
+                  <option value={lecture.lecture.id} key={lecture.lecture.id}>
                     {lecture.lecture.lectureName}-{lecture.lecture.id}
                   </option>
                 ))}
