@@ -4,6 +4,7 @@ import Card from "../../components/UI/Card";
 import Styles from "./StartClass.module.css";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
+import FooterNav from "../../components/layout/FooterNav";
 
 const prisma = new PrismaClient();
 const axios = require("axios");
@@ -25,6 +26,12 @@ export async function getServerSideProps() {
     },
   };
 }
+
+const navLinks = [
+  ["./ViewClasses", "View Lectures"],
+  ["./ViewStudentAttendance", "View Student Attendance"],
+  ["./ViewStudentGrades", "View Student Grades"],
+];
 
 const StartClass = (props) => {
   const [availibleLectures, setAvailibleLectures] = useState(
@@ -97,6 +104,7 @@ const StartClass = (props) => {
             <div />
           )}
         </Card>
+        <FooterNav items={navLinks} />
       </div>
     </React.Fragment>
   );
