@@ -37,7 +37,7 @@ const ViewCourses = (props) => {
   return (
     <React.Fragment>
       <head>
-        <title>View Courses</title>
+        <title>View Lectures</title>
       </head>
 
       <div className={"main-container"}>

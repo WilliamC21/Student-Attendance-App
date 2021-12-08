@@ -9,3 +9,9 @@
   text-align: center;
   overflow: hidden;
 }
+
+.item-container-right {
+  width: 20%;
+  text-align: end;
+  overflow: hidden;
+}

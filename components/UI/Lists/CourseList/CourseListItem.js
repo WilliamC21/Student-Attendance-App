@@ -9,7 +9,7 @@ const ListItem = (props) => {
         <div className={Styles["start-container"]}>
           <h2>{props.courseID}</h2>
         </div>
-        <div className={Styles["mid-container"]}>
+        <div className={Styles["start-container"]}>
           <h2>{props.courseName}</h2>
         </div>
         <div className={Styles["end-container"]}>

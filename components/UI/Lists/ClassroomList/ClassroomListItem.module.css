@@ -4,13 +4,7 @@
   overflow: hidden;
 }
 
-.mid-container {
-  width: 50%;
-  text-align: start;
-  overflow: hidden;
-}
-
 .end-container {
-  width: 20%;
+  width: 50%;
   text-align: end;
 }

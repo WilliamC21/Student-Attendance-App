@@ -1,4 +1,9 @@
 .label-container {
-  width: 25%;
+  width: 50%;
   text-align: start;
+}
+
+.label-container-end {
+  width: 50%;
+  text-align: end;
 }

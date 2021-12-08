@@ -28,11 +28,11 @@ const ViewStudentAttendance = (props) => {
   return (
     <React.Fragment>
       <head>
-        <title>View Grades</title>
+        <title>View Student Attendance</title>
       </head>
 
       <div className={"main-container"}>
-        <h1>Your Grades</h1>
+        <h1>Student Attendance</h1>
 
         <CourseListContainer
           labels={["Course Code", "Title", "Teacher"]}

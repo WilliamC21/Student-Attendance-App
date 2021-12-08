@@ -6,7 +6,7 @@ import { Flex, Spacer } from "@chakra-ui/react";
 const ClassroomListContainer = (props) => {
   return (
     <Card>
-      {/* <ListLegend labels={props.labels} /> */}
+      <ListLegend labels={props.labels} />
       {props.items.map((classroom) => (
         <ClassroomListItem
           key={classroom.roomNum}

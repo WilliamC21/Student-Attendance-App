@@ -34,7 +34,7 @@ const EditClassrooms = (props) => {
         <h1>Edit Classrooms</h1>
         <NewClassForm />
         <ClassroomListContainer
-          labels={("Room", "Building")}
+          labels={["Room", "Building"]}
           items={classRooms}
         />
 
