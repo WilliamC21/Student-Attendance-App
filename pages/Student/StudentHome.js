@@ -39,7 +39,7 @@ export async function getServerSideProps() {
 
 export default function StudentHome(props) {
   let nextLecture = props.lectureInfo[1];
-  let recentGrade = props.grades[0];
+  let recentGrade = props.grades[props.grades.length - 1];
 
   let totalLectureCount = props.lectures.length;
 

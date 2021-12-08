@@ -112,6 +112,7 @@ const LogAttendance = (props) => {
               <input id="code-input" onChange={codeChangeHandler} />
 
               <button type="submit">Attend this lecture</button>
+
               <div>{alert}</div>
             </form>
           </div>

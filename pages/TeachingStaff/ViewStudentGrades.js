@@ -1,5 +1,5 @@
 import React from "react";
-import CourseListContainer from "../../components/UI/Lists/CourseList/CourseListContainer";
+import GradesListContainer from "../../components/UI/Lists/GradesList/GradesListContainer";
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 import FooterNav from "../../components/layout/FooterNav";
@@ -7,11 +7,11 @@ import FooterNav from "../../components/layout/FooterNav";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
-  const courses = await prisma.course.findMany();
+  const studentsGrades = await prisma.grade.findMany({});
 
   return {
     props: {
-      initialCourses: courses,
+      grades: studentsGrades,
     },
   };
 }
@@ -23,8 +23,8 @@ const navLinks = [
 ];
 
 const ViewStudentGrades = (props) => {
-  const [courses, setCourses] = useState(props.initialCourses);
-  console.log(courses);
+  const [grades, setGrades] = useState(props.grades);
+
   return (
     <React.Fragment>
       <head>
@@ -34,9 +34,9 @@ const ViewStudentGrades = (props) => {
       <div className={"main-container"}>
         <h1>Student Grades</h1>
 
-        <CourseListContainer
-          labels={["Course Code", "Title", "Teacher"]}
-          items={courses}
+        <GradesListContainer
+          labels={["Course Code", "Assessment", "Mark Achieved"]}
+          items={grades}
         />
         <FooterNav items={navLinks} />
       </div>
