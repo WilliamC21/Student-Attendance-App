@@ -3,7 +3,7 @@ import CourseListContainer from "../../components/UI/Lists/CourseList/CourseList
 import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 import NewCourseForm from "../../components/Forms/NewCourseForm";
-
+import FooterNav from "../../components/layout/FooterNav";
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
@@ -15,6 +15,11 @@ export async function getServerSideProps() {
     },
   };
 }
+
+const navLinks = [
+  ["./EditUsers", "Edit Users"],
+  ["./EditClassrooms", "Edit Classrooms"],
+];
 
 const EditCourses = (props) => {
   const [courses, setCourses] = useState(props.initialCourses);
@@ -34,6 +39,7 @@ const EditCourses = (props) => {
           labels={["Course Code", "Title", "Teacher"]}
           items={courses}
         />
+        <FooterNav items={navLinks} />
       </div>
     </React.Fragment>
   );

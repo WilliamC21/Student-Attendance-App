@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import FooterNav from "../../components/layout/FooterNav";
 import { VStack, HStack, Text } from "@chakra-ui/react";
 import ListContainer from "../../components/UI/Lists/StudentLists/StudentListContainer";
 import { PrismaClient } from "@prisma/client";
@@ -20,6 +20,11 @@ export async function getServerSideProps() {
   };
 }
 
+const navLinks = [
+  ["./EditCourses", "Edit Courses"],
+  ["./EditClassrooms", "Edit Classrooms"],
+];
+
 const EditUsers = (props) => {
   const [students, setStudents] = useState(props.initialStudents);
   const [courses, setCourses] = useState(props.initialCourses);
@@ -37,6 +42,7 @@ const EditUsers = (props) => {
           labels={["First Name", "Surname", "Email", "Attendance"]}
           items={students}
         />
+        <FooterNav items={navLinks} />
       </div>
     </React.Fragment>
   );
