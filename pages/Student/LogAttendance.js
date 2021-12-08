@@ -48,7 +48,7 @@ const LogAttendance = (props) => {
   };
 
   const alert = <div className={Styles["alert"]}>{alertMessage}</div>;
-
+  console.log(props.student.firstName);
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -83,9 +83,16 @@ const LogAttendance = (props) => {
       setAlertMessage("Incorrect Code Entered");
     }
   };
+
+  const navLinks = [
+    ["./ViewAttendance", "View Attendance"],
+    ["./ViewCourses", "View Courses"],
+    ["./ViewGrades", "View Grades"],
+  ];
+
   return (
     <React.Fragment>
-      <h1>Log Attendance</h1>
+      <h1>Attend a Lecture</h1>
 
       <div className="main-container">
         <Card>
@@ -109,19 +116,7 @@ const LogAttendance = (props) => {
             </form>
           </div>
         </Card>
-        <Card>
-          <div className={Styles["nav"]}>
-            <Link href="./ViewAttendance">
-              <button>View Attendance</button>
-            </Link>
-            <Link href="./ViewCourses">
-              <button>View Courses</button>
-            </Link>
-            <Link href="./ViewGrades">
-              <button>View Grades</button>
-            </Link>
-          </div>
-        </Card>
+        <FooterNav items={navLinks} />
       </div>
     </React.Fragment>
   );

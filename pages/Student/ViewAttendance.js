@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import { useState } from "react";
 import Link from "next/dist/client/link";
 import AttendedLectureListContainer from "../../components/UI/Lists/LectureList/AttendedLectureListContainer";
+import FooterNav from "../../components/layout/FooterNav";
 
 const prisma = new PrismaClient();
 const userID = 1;
@@ -30,6 +31,12 @@ export async function getServerSideProps() {
   };
 }
 
+const navLinks = [
+  ["./LogAttendance", "Log Attendance"],
+  ["./ViewCourses", "View Courses"],
+  ["./ViewGrades", "View Grades"],
+];
+
 const ViewAttendance = (props) => {
   const [lectures, setLectures] = useState(props.lectures);
 
@@ -47,19 +54,7 @@ const ViewAttendance = (props) => {
           labels={["Course", "Lecture", "Lecture ID", "Date", "Attended"]}
         />
 
-        <Card>
-          <div className="nav">
-            <Link href="./LogAttendance">
-              <button>Log Attendance</button>
-            </Link>
-            <Link href="./ViewCourses">
-              <button>View Courses</button>
-            </Link>
-            <Link href="./ViewGrades">
-              <button>View Grades</button>
-            </Link>
-          </div>
-        </Card>
+        <FooterNav items={navLinks} />
       </div>
     </React.Fragment>
   );
