@@ -2,7 +2,7 @@
 
 body {
   background: #f1faee;
-  font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .marginT {
