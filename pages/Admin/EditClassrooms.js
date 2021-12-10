@@ -18,6 +18,7 @@ export async function getServerSideProps() {
   };
 }
 const navLinks = [
+  ["./AdminHome", "Home"],
   ["./EditUsers", "Edit Users"],
   ["./EditCourses", "Edit Courses"],
 ];

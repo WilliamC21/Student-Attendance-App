@@ -17,6 +17,7 @@ export async function getServerSideProps() {
 }
 
 const navLinks = [
+  ["./AdminHome", "Home"],
   ["./EditUsers", "Edit Users"],
   ["./EditClassrooms", "Edit Classrooms"],
 ];

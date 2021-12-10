@@ -24,6 +24,7 @@ export async function getServerSideProps() {
 }
 
 const navLinks = [
+  ["./StudentHome", "Home"],
   ["./LogAttendance", "Log Attendance"],
   ["./ViewCourses", "View Courses"],
   ["./ViewCourses", "View Courses"],

@@ -1,12 +1,8 @@
 import React from "react";
 import Link from "next/dist/client/link";
-import Header from "../../components/layout/Header";
 import Styles from "./StudentHome.module.css";
 import HalfCard from "../../components/UI/HalfCard";
-import FooterNav from "../../components/layout/FooterNav";
-import FeatureCard from "../../components/UI/FeatureCard";
-//import Button from "../../components/UI/Button";
-import { Flex, Container, VStack, HStack, Button } from "@chakra-ui/react";
+
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { PrismaClient } from "@prisma/client";
@@ -26,6 +22,8 @@ export async function getServerSideProps() {
     },
   });
 
+  const rooms = await prisma.classRoom.findMany({});
+
   const lectures = await prisma.lecture.findMany({});
   return {
     props: {
@@ -33,6 +31,7 @@ export async function getServerSideProps() {
       lectures: student.lectures,
       grades: student.gradesObtained,
       lectureInfo: lectures,
+      rooms: rooms,
     },
   };
 }
@@ -48,6 +47,15 @@ export default function StudentHome(props) {
   ).length;
 
   let attendancePercentage = (totalAttendedCount / totalLectureCount) * 100;
+
+  console.log(props.rooms);
+  let buildingName = props.rooms.filter(
+    (building) => building.roomNum == nextLecture.room
+  );
+
+  let nextBuidling = buildingName[0].building;
+
+  console.log(nextBuidling);
 
   return (
     <React.Fragment>
@@ -84,7 +92,12 @@ export default function StudentHome(props) {
                   <i>Lecture: {nextLecture.lectureName}</i>
                 </p>
                 <p>
-                  <i>Location: {nextLecture.room}</i>
+                  <i>
+                    Location: {nextBuidling} - {nextLecture.room}
+                  </i>
+                </p>
+                <p>
+                  <i>Date: {nextLecture.dateTime}</i>
                 </p>
 
                 <h3 className={Styles["glance-text"]}>
