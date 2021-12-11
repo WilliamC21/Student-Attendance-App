@@ -42,7 +42,7 @@ const ViewCourses = (props) => {
       </head>
 
       <div className={"main-container"}>
-        <h1>Your Courses</h1>
+        <h1>Your Lectures</h1>
 
         <LectureListContainer
           items={lectures}

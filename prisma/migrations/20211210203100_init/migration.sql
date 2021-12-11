@@ -103,6 +103,9 @@ ALTER TABLE "StudentOnLecture" ADD CONSTRAINT "StudentOnLecture_studentID_fkey" 
 ALTER TABLE "StudentOnLecture" ADD CONSTRAINT "StudentOnLecture_lectureID_fkey" FOREIGN KEY ("lectureID") REFERENCES "Lecture"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "Course" ADD CONSTRAINT "Course_teacherID_fkey" FOREIGN KEY ("teacherID") REFERENCES "Staff"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Grade" ADD CONSTRAINT "Grade_courseID_fkey" FOREIGN KEY ("courseID") REFERENCES "Course"("courseID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey

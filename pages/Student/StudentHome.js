@@ -41,21 +41,15 @@ export default function StudentHome(props) {
   let recentGrade = props.grades[props.grades.length - 1];
 
   let totalLectureCount = props.lectures.length;
-
   let totalAttendedCount = props.lectures.filter(
     (lecture) => lecture.attended == true
   ).length;
-
   let attendancePercentage = (totalAttendedCount / totalLectureCount) * 100;
 
-  console.log(props.rooms);
   let buildingName = props.rooms.filter(
     (building) => building.roomNum == nextLecture.room
   );
-
   let nextBuidling = buildingName[0].building;
-
-  console.log(nextBuidling);
 
   return (
     <React.Fragment>

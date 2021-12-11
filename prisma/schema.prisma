@@ -28,6 +28,7 @@ model Staff {
   email          String
   isAdmin        Boolean
   isTeacher      Boolean
+  teachesCourse  Course[]
   teachesLecture Lecture[]
 }
 
@@ -67,6 +68,7 @@ model Course {
   courseName       String
   teacherID        Int
   hasAssessments   Grade[]
+  taughtBy    Staff     @relation(fields: [teacherID], references: [id])
   hasLectures      Lecture[]
   enrolledStudents Student[]
 }

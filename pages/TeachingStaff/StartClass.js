@@ -20,9 +20,20 @@ export async function getServerSideProps() {
     },
   });
 
+  const teachersCourses = await prisma.staff.findUnique({
+    where: {
+      id: 1,
+    },
+
+    include: {
+      teachesCourse: {},
+    },
+  });
+
   return {
     props: {
       teachersLectures: teachersLecture.teachesLecture,
+      teachersCourses: teachersCourses.teachesCourse,
     },
   };
 }
@@ -38,25 +49,43 @@ const StartClass = (props) => {
   const [availibleLectures, setAvailibleLectures] = useState(
     props.teachersLectures
   );
+  const [selectedLecture, setSelectedLecture] = useState("");
+  const [lectureCode, setLectureCode] = useState("XXXX");
 
-  let lectureOptions = availibleLectures.map((item, i) => {
+  const [availibleCourses, setAvailibleCourses] = useState(
+    props.teachersCourses
+  );
+  const [selectedCourse, setSelectedCourse] = useState("");
+
+  const [alertVisible, setAlertVisible] = useState(false);
+
+  let courseOptions = availibleCourses.map((item, i) => {
     return (
-      <option key={i} value={item.id}>
-        {item.lectureName}
+      <option key={i} value={item.courseID}>
+        {item.courseName} - {item.courseID}
       </option>
     );
   });
 
-  const [lectureCode, setLectureCode] = useState("XXXX");
-  const [selectedLecture, setSelectedLecture] = useState("");
-  const [alertVisible, setAlertVisible] = useState(false);
+  let lectureOptions = availibleLectures
+    .filter((lecture) => lecture.courseID == selectedCourse)
+    .map((item, i) => {
+      return (
+        <option key={i} value={item.id}>
+          {item.lectureName} - {item.id}
+        </option>
+      );
+    });
 
   const lectureChangeHandler = (event) => {
     setSelectedLecture(event.target.value);
     setLectureCode(Math.floor(1000 + Math.random() * 9000));
   };
 
-  const alert = <div>TEST</div>;
+  const courseChangeHandler = (event) => {
+    setSelectedCourse(event.target.value);
+    console.log(selectedCourse);
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -65,7 +94,6 @@ const StartClass = (props) => {
       lectureID: selectedLecture,
       lectureCode: lectureCode,
     };
-    console.log(data);
 
     await axios
       .post("/api/TeachingStaff/EditLecture", data)
@@ -88,6 +116,12 @@ const StartClass = (props) => {
         <Card>
           <div className={Styles["start-class-box"]}>
             <form onSubmit={submitHandler}>
+              <label>Select Course</label>
+              <select value={selectedCourse} onChange={courseChangeHandler}>
+                <option></option>
+                {courseOptions}
+              </select>
+
               <label>Select Lecture to start</label>
               <select value={selectedLecture} onChange={lectureChangeHandler}>
                 <option></option>
