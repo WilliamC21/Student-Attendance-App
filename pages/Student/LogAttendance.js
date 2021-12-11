@@ -65,7 +65,7 @@ const LogAttendance = (props) => {
     .filter((lecture) => lecture.lecture.courseID == selectedCourse)
     .map((item, i) => {
       return (
-        <option key={i} value={item.id}>
+        <option key={i} value={item.lecture.id}>
           {item.lecture.lectureName} - {item.lecture.id}
         </option>
       );
@@ -92,7 +92,8 @@ const LogAttendance = (props) => {
     const specificLecture = lectures.filter(
       (lecture) => lecture.lectureID === chosenLecture
     );
-
+    console.log(lectures);
+    console.log(specificLecture);
     if (specificLecture.length == 0) {
       setAlertMessage("Please choose a lecture to attend");
       return;
