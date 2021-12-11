@@ -24,11 +24,21 @@ export async function getServerSideProps() {
     },
   });
 
+  const studentsCourses = await prisma.student.findUnique({
+    where: {
+      id: 1,
+    },
+
+    include: {
+      enrolledInCourse: {},
+    },
+  });
+
   return {
     props: {
       student: data,
       lectures: data.lectures,
-      lecture: data.lectures,
+      courses: studentsCourses.enrolledInCourse,
     },
   };
 }
@@ -38,6 +48,28 @@ const LogAttendance = (props) => {
   const [enteredCode, setEnteredCode] = useState("");
   const [chosenLecture, setChosenLecture] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
+  const [availibleCourses, setAvailibleCourses] = useState(props.courses);
+  const [selectedCourse, setSelectedCourse] = useState("");
+
+  let courseOptions = availibleCourses.map((item, i) => {
+    return (
+      <option key={i} value={item.courseID}>
+        {item.courseName} - {item.courseID}
+      </option>
+    );
+  });
+
+  console.log(lectures);
+
+  let lectureOptions = lectures
+    .filter((lecture) => lecture.lecture.courseID == selectedCourse)
+    .map((item, i) => {
+      return (
+        <option key={i} value={item.id}>
+          {item.lecture.lectureName} - {item.lecture.id}
+        </option>
+      );
+    });
 
   const codeChangeHandler = (event) => {
     setEnteredCode(event.target.value);
@@ -45,6 +77,11 @@ const LogAttendance = (props) => {
 
   const chosenLectureChangeHandler = (event) => {
     setChosenLecture(event.target.value);
+  };
+
+  const courseChangeHandler = (event) => {
+    setSelectedCourse(event.target.value);
+    console.log(selectedCourse);
   };
 
   const alert = <div className={Styles["alert"]}>{alertMessage}</div>;
@@ -98,14 +135,16 @@ const LogAttendance = (props) => {
         <Card>
           <div className={Styles["log-attendance-box"]}>
             <form onSubmit={submitHandler}>
+              <label>Select Course</label>
+              <select value={selectedCourse} onChange={courseChangeHandler}>
+                <option></option>
+                {courseOptions}
+              </select>
+
               <label>Select lecture to attend</label>
               <select onChange={chosenLectureChangeHandler}>
-                <option value={""}></option>
-                {lectures.map((lecture) => (
-                  <option value={lecture.lecture.id} key={lecture.lecture.id}>
-                    {lecture.lecture.lectureName}-{lecture.lecture.id}
-                  </option>
-                ))}
+                <option></option>
+                {lectureOptions}
               </select>
 
               <label htmlFor="code-input">Enter Code</label>
